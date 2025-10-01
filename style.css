@@ -1,1 +1,16 @@
-
+    .nav {
+      background: #eee;
+      text-align: center;
+      padding: 0.5rem 0;
+      margin-bottom: 2rem;
+    }
+    .nav a {
+      color: #127d3f;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+    .nav a:hover {
+      text-decoration: underline;
+    }
