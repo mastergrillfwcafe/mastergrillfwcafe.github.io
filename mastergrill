@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Western Feast</title>
+  <link rel="stylesheet" href="mastergrill.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">Western Feast</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="menu-toggle">&#9776;</div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <h1>Welcome to Western Feast</h1>
+      <p>Serving the best Western cuisine in town</p>
+      <a href="#menu" class="btn">Explore Menu</a>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="menu">
+    <h2>Our Menu</h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <img src="img/menu1.jpg" alt="Lamb Chop">
+        <h3>Lamb Chop</h3>
+        <p>RM 25.00</p>
+      </div>
+      <div class="menu-card">
+        <img src="img/menu2.jpg" alt="Ribeye Steak">
+        <h3>Ribeye Steak</h3>
+        <p>RM 45.00</p>
+      </div>
+      <div class="menu-card">
+        <img src="img/menu3.jpg" alt="Monster Burger">
+        <h3>Monster Burger</h3>
+        <p>RM 20.00</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <h2>About Us</h2>
+    <p>
+      At Western Feast, we bring the authentic taste of Western food to your table.
+      Our chefs are passionate about crafting meals that satisfy both taste and heart.
+    </p>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery">
+    <h2>Gallery</h2>
+    <div class="slider">
+      <div class="slides">
+        <img src="img/gallery1.jpg" alt="Gallery 1">
+        <img src="img/gallery2.jpg" alt="Gallery 2">
+        <img src="img/gallery3.jpg" alt="Gallery 3">
+      </div>
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p>Email: info@westernfeast.com</p>
+    <p>Phone: +60 12-3456789</p>
+    <p>Address: Seri Iskandar, Perak</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Western Feast. All Rights Reserved.</p>
+    <div class="socials">
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+    </div>
+  </footer>
+
+  <script src="mastergrill.js"></script>
+</body>
+</html>
