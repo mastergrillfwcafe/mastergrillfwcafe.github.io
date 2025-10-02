@@ -19,6 +19,11 @@ body {
   font-weight: 700;
 }
 
+.logo-header {
+  text-align: center;
+  margin-top: 20px;
+}
+
 .nav {
   background: #f9f3ee;
   text-align: center;
