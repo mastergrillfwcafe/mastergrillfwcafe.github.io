@@ -24,6 +24,12 @@ body {
   margin-top: 20px;
 }
 
+.logo-header .logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
 .nav {
   background: #f9f3ee;
   text-align: center;
