@@ -790,7 +790,7 @@ header {
 }
 
 .faq-item.active .faq-icon {
-  content: "–";
+  /* content: "–"; */
   transform: rotate(180deg);
 }
 
