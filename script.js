@@ -216,19 +216,15 @@ document.querySelectorAll(".faq-item").forEach(item => {
   const answer = item.querySelector(".faq-answer");
 
   question.addEventListener("click", () => {
-    const isActive = item.classList.contains("active");
-
-    // Close all open items (optional, like an accordion)
-    document.querySelectorAll(".faq-item").forEach(i => {
-      i.classList.remove("active");
-      i.querySelector(".faq-answer").style.maxHeight = null;
-      i.querySelector(".faq-icon").textContent = "+";
-    });
-
-    // Toggle current one
-    if (!isActive) {
+    if (item.classList.contains("active")) {
+      // close
+      item.classList.remove("active");
+      answer.style.maxHeight = null;
+      icon.textContent = "+";
+    } else {
+      // open
       item.classList.add("active");
-      answer.style.maxHeight = answer.scrollHeight + "px"; // auto height
+      answer.style.maxHeight = answer.scrollHeight + "px";
       icon.textContent = "–";
     }
   });
