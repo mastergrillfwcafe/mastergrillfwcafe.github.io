@@ -165,13 +165,30 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ===== FAQ Accordion =====
-document.querySelectorAll(".faq-item").forEach(item => {
-  const question = item.querySelector(".faq-question");
-  const icon = item.querySelector(".faq-icon");
-
+document.querySelectorAll(".faq-question").forEach(question => {
   question.addEventListener("click", () => {
+    const item = question.parentElement;
+    const answer = item.querySelector(".faq-answer");
+    const icon = item.querySelector(".faq-icon");
+
+    // Close others
+    document.querySelectorAll(".faq-item").forEach(other => {
+      if (other !== item) {
+        other.classList.remove("active");
+        other.querySelector(".faq-answer").style.maxHeight = null;
+        other.querySelector(".faq-icon").textContent = "+";
+      }
+    });
+
+    // Toggle current
     item.classList.toggle("active");
-    icon.textContent = item.classList.contains("active") ? "–" : "+";
+    if (item.classList.contains("active")) {
+      answer.style.maxHeight = answer.scrollHeight + "px";
+      icon.textContent = "–";
+    } else {
+      answer.style.maxHeight = null;
+      icon.textContent = "+";
+    }
   });
 });
 
