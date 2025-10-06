@@ -209,16 +209,27 @@ toggleBtn.addEventListener('click', () => {
   navLinks.classList.toggle('show');
 });
 
-// ===== Accordion =====
-document.querySelectorAll('.accordion-header').forEach(header => {
-  header.addEventListener('click', () => {
-    header.classList.toggle('active');
-    const body = header.nextElementSibling;
-    body.classList.toggle('open');
-    if (body.classList.contains('open')) {
-      body.style.maxHeight = body.scrollHeight + "px";
-    } else {
-      body.style.maxHeight = null;
+// ===== FAQ Accordion =====
+document.querySelectorAll(".faq-item").forEach(item => {
+  const question = item.querySelector(".faq-question");
+  const icon = item.querySelector(".faq-icon");
+  const answer = item.querySelector(".faq-answer");
+
+  question.addEventListener("click", () => {
+    const isActive = item.classList.contains("active");
+
+    // Close all open items (optional, like an accordion)
+    document.querySelectorAll(".faq-item").forEach(i => {
+      i.classList.remove("active");
+      i.querySelector(".faq-answer").style.maxHeight = null;
+      i.querySelector(".faq-icon").textContent = "+";
+    });
+
+    // Toggle current one
+    if (!isActive) {
+      item.classList.add("active");
+      answer.style.maxHeight = answer.scrollHeight + "px"; // auto height
+      icon.textContent = "–";
     }
   });
 });
