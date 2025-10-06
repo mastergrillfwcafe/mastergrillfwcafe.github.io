@@ -734,8 +734,9 @@ header {
 
 /* FAQ Section */
 .faq-section {
-  padding: 4rem 1rem;
-  background: #fff;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
 .faq-section .section-title {
@@ -751,42 +752,38 @@ header {
 
 .faq-item {
   border-bottom: 1px solid #ddd;
-  margin-bottom: 1rem;
+  padding: 15px 0;
 }
 
 .faq-question {
-  width: 100%;
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  font-weight: 600;
-  text-align: left;
-  padding: 1rem;
-  cursor: pointer;
-  position: relative;
-  color: #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 10px 0;
 }
 
 .faq-icon {
-  font-size: 1.5rem;
-  color: #e63946;
+  font-size: 1.2rem;
   transition: transform 0.3s ease;
 }
 
 .faq-answer {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease, padding 0.3s ease;
-  padding: 0 1rem;
-  color: #333;
+  transition: max-height 0.4s ease;
+  font-size: 0.95rem;
+  padding-left: 10px;
 }
 
 .faq-item.active .faq-answer {
-  max-height: 300px; /* enough for content */
-  padding: 1rem;
+  max-height: 300px; /* increase if answers are longer */
 }
 
 .faq-item.active .faq-icon {
