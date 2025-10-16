@@ -1,0 +1,710 @@
+:root {
+    --accent: #ff1d1d;
+    --bg: #f9f9f9;
+    --text: #222;
+    --radius: 12px;
+}
+
+:target {
+    scroll-margin-top: 80px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    animation: pageFade 0.8s ease-in forwards;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+@keyframes pageFade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+/* === Top Bar === */
+.top-bar {
+    background: #111;
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 6px 0;
+    width: 100%;
+    z-index: 1100;
+}
+
+.top-bar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.top-left span {
+    color: #f5f5f5;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.top-right a {
+    color: #f5f5f5;
+    /* soft white by default */
+    font-weight: 600;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.top-right a:hover {
+    color: var(--accent);
+    text-shadow: 0 0 8px rgba(255, 29, 29, 0.6);
+    transform: translateY(-1px);
+}
+
+.top-right .divider {
+    color: #888;
+}
+
+/* Responsive (hide some details on mobile) */
+@media (max-width: 768px) {
+    .top-bar-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 6px;
+        font-size: 0.85rem;
+    }
+
+    .top-right {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .top-right .divider {
+        display: none;
+    }
+}
+
+/* === Header === */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    animation: fadeDown 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+    will-change: transform, opacity;
+    /* smoother animation */
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 5%;
+}
+
+/* Header Animation */
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Brand */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand .logo {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.brand-text h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 1;
+    font-weight: 800;
+}
+
+.brand-text-master {
+    color: #000;
+}
+
+.brand-text-grill {
+    color: var(--accent);
+}
+
+.brand-subtitle {
+    font-size: 0.95rem;
+    color: #777;
+    font-weight: 500;
+    margin-top: 3px;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav.show {
+    display: flex;
+    margin-top: 10px;
+}
+
+/* === Navigation Hover Animation === */
+.nav a {
+    position: relative;
+    color: #222;
+    font-weight: 600;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav a:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.nav a:hover::after {
+    width: 100%;
+}
+
+/* 🔥 Smooth underline that slides in */
+.nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+/* Hover state */
+.nav a:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Top-level nav links hover effect */
+.nav a:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Mobile nav */
+.menu-toggle {
+    display: none;
+    /* Hide by default on large screens */
+    font-size: 28px;
+    color: #222;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* 🔥 Red X when active */
+.menu-toggle.active {
+    color: var(--accent);
+    transform: rotate(90deg);
+}
+
+/* === Hero Section === */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55vh;
+    /* Compact hero height */
+    background: url('background.jpg') center/cover no-repeat;
+    position: relative;
+    text-align: center;
+    color: #fff;
+    padding: 50px 15px;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    /* subtle dark overlay for text contrast */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 4.5rem;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    animation: fadeUp 1.4s ease-out forwards;
+    animation-delay: 0.4s;
+}
+
+.hero p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 36px;
+    color: #f2f2f2;
+    animation: fadeUp 1.4s ease-out forwards;
+    animation-delay: 0.6s;
+}
+
+/* === Hero Fade-in Animation === */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1.2s ease-out forwards;
+    animation-delay: 0.6s;
+}
+
+/* Animate the buttons separately for staggered entry */
+.hero-buttons a {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1.2s ease-out forwards;
+}
+
+.hero-buttons a:nth-child(1) {
+    animation-delay: 0.6s;
+}
+
+.hero-buttons a:nth-child(2) {
+    animation-delay: 0.8s;
+}
+
+/* Keyframes for smooth fade-up */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Base Button */
+.btn {
+    display: inline-block;
+    font-weight: 700;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(145deg, #ff2c2c, #e60000);
+    box-shadow: 0 4px 12px rgba(255, 44, 44, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 44, 44, 0.6);
+}
+
+/* Menu Button (Red Glossy) */
+.btn-view-menu {
+    background: linear-gradient(145deg, #ff2c2c, #e60000);
+    box-shadow: 0 4px 12px rgba(255, 44, 44, 0.4);
+}
+
+/* WhatsApp Button (Green Glossy) */
+.btn-whatsapp-us {
+    background: linear-gradient(145deg, #25D366, #128C7E);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+}
+
+.btn-whatsapp-us:hover {
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.6);
+}
+
+/* Button Group Container */
+.hero-buttons {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+/* === About Section === */
+#about {
+    position: relative;
+    padding: 100px 5%;
+    background: linear-gradient(180deg, #fff8f8 0%, #fdfdfd 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Section Title */
+.section-head {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-head h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #111;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    display: inline-block;
+}
+
+.accent-line {
+    width: 90px;
+    height: 4px;
+    background: var(--accent);
+    margin: 14px auto 0;
+    border-radius: 2px;
+    box-shadow: 0 2px 10px rgba(255, 29, 29, 0.4);
+}
+
+/* Inner layout */
+.about-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    max-width: 1150px;
+    width: 100%;
+}
+
+/* Image Styling */
+.about-inner img {
+    width: 48%;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.5s ease;
+    transform: translateY(0);
+}
+
+/* Hover floating effect */
+.about-inner img:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* About text block */
+.about-text {
+    width: 48%;
+    font-size: 1.15rem;
+    color: #333;
+    line-height: 1.9;
+    text-align: left;
+    position: relative;
+    padding: 20px 0;
+}
+
+/* Decorative left border accent */
+.about-text::before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    top: 10%;
+    width: 4px;
+    height: 80%;
+    background: var(--accent);
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(255, 29, 29, 0.3);
+}
+
+/* Fade-in animation */
+#about {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1.3s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+/* Decorative floating shapes (light subtle texture) */
+#about::before,
+#about::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 29, 29, 0.05);
+    filter: blur(50px);
+    z-index: 0;
+}
+
+#about::before {
+    width: 180px;
+    height: 180px;
+    top: 10%;
+    left: 10%;
+}
+
+#about::after {
+    width: 220px;
+    height: 220px;
+    bottom: 15%;
+    right: 15%;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .about-inner {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .about-inner img,
+    .about-text {
+        width: 100%;
+        text-align: center;
+    }
+
+    .about-text {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    .about-text::before {
+        display: none;
+    }
+
+    .section-head h3 {
+        font-size: 2.2rem;
+    }
+}
+
+/* @media Queries */
+@media (max-width: 768px) {
+
+    /* Brand */
+    .brand-subtitle {
+        display: none;
+    }
+
+    .brand {
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Menu Toggle */
+    .menu-toggle {
+        display: block;
+        font-size: 28px;
+        color: black;
+        cursor: pointer;
+    }
+
+    /* Navigation */
+    .nav {
+        display: flex;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.98);
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        text-align: center;
+        border-top: 1px solid #eee;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    .nav.show {
+        max-height: 400px;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Navigation Hover Animation (clean, working version) */
+    .nav a {
+        position: relative;
+        display: inline-block;
+        font-weight: 600;
+        color: #222;
+        padding: 6px 0;
+        transition: color 0.3s ease, transform 0.25s ease;
+    }
+
+    /* Hover state — lift + color change */
+    .nav a:hover {
+        color: var(--accent);
+        transform: translateY(-3px);
+        text-shadow: 0 0 6px rgba(255, 29, 29, 0.4);
+    }
+
+    /* Underline animation */
+    .nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: width 0.3s ease;
+    }
+
+    /* Expand underline on hover */
+    .nav a:hover::after {
+        width: 100%;
+    }
+
+    /* Hero */
+    .hero {
+        height: auto;
+        padding: 80px 20px;
+    }
+
+    .hero h1 {
+        font-size: 2.6rem;
+        letter-spacing: 1px;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 24px;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 12px 28px;
+        font-size: 0.95rem;
+        margin: 8px 6px;
+    }
+
+    /* --- Hero Buttons (Mobile Optimization) --- */
+    .hero-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+    }
+
+    .hero-buttons .btn {
+        padding: 10px 18px;
+        font-size: 0.9rem;
+        border-radius: 8px;
+        min-width: 130px;
+    }
+
+    /* Adjust WhatsApp button shadow for balance */
+    .hero-buttons .btn-whatsapp-us {
+        box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3);
+    }
+}
+
+/* === Button Fade-up + Soft Pulse Animation === */
+@keyframes softFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Gentle heartbeat pulse */
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+/* Base state: hidden before appearing */
+.btn {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* When visible on screen */
+.btn.visible {
+    animation: softFadeUp 0.6s ease-out forwards, pulse 2.8s infinite 1s;
+}
