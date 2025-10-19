@@ -398,7 +398,7 @@
             });
         });
 
-        // WhatsApp button logic
+        // ✅ WhatsApp button logic (formatted + branding)
         document.getElementById('send-whatsapp-btn').addEventListener('click', () => {
             if (!selectedMenu) {
                 alert('Please select a menu before sending.');
@@ -406,18 +406,23 @@
             }
 
             const menuName = selectedMenu.querySelector('h4').innerText;
-            const items = Array.from(selectedMenu.querySelectorAll('li')).map(li => `- ${li.textContent}`).join('%0A');
+            const items = Array.from(selectedMenu.querySelectorAll('li')).map(li => `- ${li.textContent}`).join('\n');
             const price = selectedMenu.dataset.price;
-
-            const message =
-                `🍳 *Breakfast Buffet Order*%0A` +
-                `Selected Package: *${menuName}*%0A%0A` +
-                `Menu Items:%0A${items}%0A%0A` +
-                `💵 Total Price: RM${price} per pax%0A%0A` +
-                `Please confirm the order details.`;
-
+            const packageType = "Breakfast Buffet"; // fixed name for this page
             const phoneNumber = '60175525805';
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+
+            // Construct message
+            let message = `🍳 *${packageType} Selection*\n`;
+            message += `Here's my selected menu:\n\n`;
+            message += `*Menu Items:*\n${items}\n\n`;
+            message += `💵 *Total Price:* RM${price} per pax\n\n`;
+            message += `Please confirm the order details.\n\n`;
+            message += `───────────────────────\n`;
+            message += `Sent from *MASTER GRILL* • ${packageType} 🍽️\n`;
+            message += `www.mastergrillfw.com`;
+
+            const encodedMsg = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
             window.open(whatsappURL, '_blank');
         });
     </script>
