@@ -7,7 +7,6 @@
     <title>Build Your Buffet Package | MasterGrill</title>
     <link rel="icon" href="logo.png">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="buttons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cinzel:wght@400;700&display=swap"
         rel="stylesheet">
 
@@ -27,7 +26,7 @@
             padding: 0;
         }
 
-        /* Header (same as main page) */
+        /* ===== Header ===== */
         header {
             background: #fff;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -41,20 +40,23 @@
             margin: 0 auto;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 10px 15px;
+            justify-content: center;
+            padding: 15px;
+            position: relative;
+            text-align: center;
         }
 
         .brand {
             display: flex;
             align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .logo {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            margin-right: 12px;
         }
 
         .brand-text h1 {
@@ -77,54 +79,37 @@
             margin-top: 3px;
         }
 
-        .nav a {
-            text-decoration: none;
-            color: #222;
-            margin: 0 10px;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .nav a:hover {
-            color: var(--accent);
-        }
-
-        .menu-toggle {
-            display: none;
+        /* ===== Back Button (Top Left) ===== */
+        .back-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
             background: none;
             border: none;
-            font-size: 1.6rem;
+            font-size: 1rem;
+            color: var(--accent);
+            font-weight: 600;
             cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: #d60000;
         }
 
         @media (max-width: 768px) {
-            .nav {
-                display: none;
-                flex-direction: column;
-                background: #fff;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                text-align: center;
-                border-top: 1px solid #eee;
+            .back-btn {
+                left: 12px;
+                font-size: 1.1rem;
             }
 
-            .nav.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .nav a {
-                padding: 10px 0;
-                border-bottom: 1px solid #eee;
+            .brand-text h1 {
+                font-size: 1.2rem;
             }
         }
 
-        /* Buffet Builder */
+        /* ===== Buffet Builder ===== */
         .buffet-container {
             max-width: 1100px;
             margin: 40px auto 100px;
@@ -138,27 +123,6 @@
             text-align: center;
             color: var(--accent);
             margin-bottom: 10px;
-        }
-
-        .package-selector {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .package-selector select {
-            padding: 8px 12px;
-            border: 2px solid var(--accent);
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            background: #fff;
-            color: var(--text);
-            cursor: pointer;
-            transition: border 0.3s ease, box-shadow 0.2s ease;
-        }
-
-        .package-selector select:hover {
-            box-shadow: 0 0 6px rgba(255, 29, 29, 0.3);
         }
 
         .category {
@@ -216,7 +180,6 @@
             margin: 10px 0;
             padding-left: 0;
             list-style: none;
-            /* Remove default bullets */
         }
 
         .summary ul li {
@@ -226,10 +189,8 @@
             line-height: 1.5;
             margin: 6px 0;
             padding-left: 22px;
-            /* Space for custom bullet */
         }
 
-        /* Custom red bullet */
         .summary ul li::before {
             content: "•";
             position: absolute;
@@ -240,10 +201,25 @@
             top: 0;
         }
 
+        .collapsible {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-weight: 600;
+            cursor: pointer;
+            padding: 8px 0;
+            margin: 10px 0;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        .collapse-content {
+            display: none;
+        }
+
         .send-whatsapp-btn {
             display: block;
             margin: 15px auto 0;
-            /* Center horizontally */
             background: linear-gradient(145deg, #25D366, #128C7E);
             color: #fff;
             border: none;
@@ -261,7 +237,6 @@
             box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
         }
 
-        /* Sticky Total Bar */
         .sticky-total {
             display: none;
             position: fixed;
@@ -291,6 +266,7 @@
     <!-- Header -->
     <header>
         <div class="header-inner">
+            <button class="back-btn" onclick="goBack()">← Back</button>
             <div class="brand">
                 <img src="logo.png" alt="MasterGrill logo" class="logo">
                 <div class="brand-text">
@@ -298,14 +274,6 @@
                     <p class="brand-subtitle">Grill · Smoke · Feast</p>
                 </div>
             </div>
-            <button class="menu-toggle">☰</button>
-            <nav class="nav">
-                <a href="index.html">Home</a>
-                <a href="index.html#about">About</a>
-                <a href="index.html#menu">Menu</a>
-                <a href="index.html#gallery">Gallery</a>
-                <a href="index.html#contact">Contact</a>
-            </nav>
         </div>
     </header>
 
@@ -382,7 +350,7 @@
 
         <!-- HOT DRINK -->
         <div class="category" data-category="HOT DRINK">
-            <h3>🥤 COLD DRINK</h3>
+            <h3>☕ HOT DRINK</h3>
             <label><input type="checkbox" data-price="2" value="Teh O Panas"> Teh O Panas (+RM2)</label>
             <label><input type="checkbox" data-price="2" value="Teh Tarik"> Teh Tarik (+RM2)</label>
             <label><input type="checkbox" data-price="2" value="Kopi O Panas"> Kopi O Panas (+RM2)</label>
@@ -397,10 +365,10 @@
             <div class="collapse-content" id="collapseContent">
                 <ul id="selected-items"></ul>
             </div>
-            <ul id="selected-items"></ul>
             <p>Total: <span id="total-price">RM2.00</span> / pax</p>
             <button class="send-whatsapp-btn" id="send-whatsapp-btn">📱 Send via WhatsApp</button>
         </div>
+
         <!-- Reservation Form -->
         <div id="reservation-form" style="display:none; text-align:center; margin-top:25px;">
             <h4 style="color:#ff1d1d; margin-bottom:10px;">Reservation Details</h4>
@@ -427,23 +395,23 @@
         </div>
     </section>
 
-    <div class="sticky-total">Total: <span id="sticky-total">RM2.00</span> / pax
-    </div>
+    <div class="sticky-total">Total: <span id="sticky-total">RM2.00</span> / pax</div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Mobile menu toggle
-            const menuToggle = document.querySelector(".menu-toggle");
-            const nav = document.querySelector(".nav");
-            if (menuToggle) {
-                menuToggle.addEventListener("click", () => {
-                    nav.classList.toggle("active");
-                });
+        // Back Button
+        function goBack() {
+            if (document.referrer !== "") {
+                window.history.back();
+            } else {
+                window.location.href = "package-breakfast.html";
             }
+        }
 
+        document.addEventListener("DOMContentLoaded", () => {
             const basePrice = 2.0;
             let total = basePrice;
             const totalDisplay = document.getElementById("total-price");
+            const stickyTotalDisplay = document.getElementById("sticky-total");
             const selectedList = document.getElementById("selected-items");
             const toggleBtn = document.getElementById("toggleSummary");
             const collapseContent = document.getElementById("collapseContent");
@@ -453,8 +421,7 @@
             const phoneNumber = "60175525805";
 
             const categoryOrder = [
-                "SOUP", "APPETIZER", "RICE OR NOODLE", "RICE", "NOODLE", "CHICKEN",
-                "BEEF", "VEGETABLE", "WESTERN", "PASTA", "DESSERT", "COLD DRINK", "HOT DRINK"
+                "APPETIZER", "RICE", "NOODLE", "CHICKEN", "VEGETABLE", "COLD DRINK", "HOT DRINK"
             ];
 
             const selections = {};
@@ -503,6 +470,7 @@
                 }
 
                 totalDisplay.textContent = `RM${total.toFixed(2)}`;
+                stickyTotalDisplay.textContent = `RM${total.toFixed(2)}`;
             }
 
             // Toggle show/hide summary
@@ -572,10 +540,11 @@
                 formDiv.style.display = "none";
                 sendBtn.style.display = "block";
             });
+
+            // Initialize the summary
+            updateSelectedList();
         });
     </script>
-
-
 </body>
 
 </html>
