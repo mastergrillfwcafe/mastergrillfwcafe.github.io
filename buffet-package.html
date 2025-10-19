@@ -6,77 +6,291 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Buffet Package | MasterGrill</title>
     <link rel="icon" href="logo.png" />
-    <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --accent: #ff1d1d;
+            --text: #222;
+            --background: #fff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fafafa;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .brand-text h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            margin: 0;
+        }
+
+        .brand-text-master {
+            color: #222;
+        }
+
+        .brand-text-grill {
+            color: var(--accent);
+        }
+
+        .brand-subtitle {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 3px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav a:hover {
+            color: var(--accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Buffet Hero Section */
+        .buffet-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .buffet-hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),
+                url('background.jpg') center/cover no-repeat;
+            z-index: -1;
+        }
+
+        .buffet-overlay {
+            width: 100%;
+            padding: 40px 20px;
+        }
+
+        .section-head {
+            margin-bottom: 40px;
+        }
+
+        .section-head h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .accent-line {
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        .buffet-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #f2f2f2;
+            line-height: 1.8;
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .menu-card h4 {
+            padding: 20px 20px 10px;
+            font-size: 1.3rem;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            margin: 15px 20px 20px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-view-menu {
+            background: var(--accent);
+        }
+
+        .btn-view-menu:hover {
+            background: #d60000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 29, 29, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav.active {
+                display: flex;
+            }
+
+            .section-head h3 {
+                font-size: 2.2rem;
+            }
+
+            .buffet-hero p {
+                font-size: 1.1rem;
+                padding: 0 20px;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 20px;
+            }
+
+            .header-inner {
+                padding: 12px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-head h3 {
+                font-size: 1.8rem;
+            }
+
+            .brand-text h1 {
+                font-size: 1.3rem;
+            }
+
+            .menu-card h4 {
+                font-size: 1.1rem;
+            }
+
+            .btn {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
-<style>
-    /* === Buffet Hero Section === */
-    .buffet-hero {
-        position: relative;
-        background: url('background.jpg') center/cover no-repeat;
-        padding: 80px 0;
-        color: #fff;
-        text-align: center;
-        background-size: cover;
-        /* Ensures image covers entire element */
-        background-position: center;
-        /* Centers the image */
-        background-repeat: no-repeat;
-        /* Prevents tiling */
-        min-height: 100vh;
-        /* Makes section at least full viewport height */
-        width: 100%;
-        /* Ensures full width */
-    }
-
-    .buffet-hero .buffet-overlay {
-        position: relative;
-        z-index: 2;
-    }
-
-    .buffet-hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.55);
-        /* Dark overlay for contrast */
-        z-index: 1;
-    }
-
-    /* Ensure text and buttons appear above overlay */
-    .buffet-hero h3,
-    .buffet-hero p,
-    .buffet-hero .menu-grid {
-        position: relative;
-        z-index: 2;
-    }
-
-    .buffet-hero .section-head h3 {
-        color: #fff;
-        font-size: 2rem;
-    }
-
-    .buffet-hero .accent-line {
-        background: var(--accent);
-        height: 3px;
-        width: 80px;
-        margin: 10px auto 20px;
-        border-radius: 5px;
-    }
-
-    .buffet-hero .menu-card {
-        background: #fff;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .buffet-hero .menu-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
-    }
-</style>
 
 <body>
 
@@ -112,47 +326,61 @@
                     <div class="accent-line"></div>
                 </div>
 
-                <p style="text-align:center; max-width:700px; margin:auto; color:#f2f2f2;">
+                <p>
                     Choose from our selection of buffet packages — Malaysian, Western, Breakfast, Lunch, or Dinner — all
                     crafted to suit your event needs.
                 </p>
 
-                <div class="menu-grid" style="margin-top:30px;">
+                <div class="menu-grid">
                     <div class="menu-card">
-                        <img src="buffet-breakfast.jpg" alt="Breakfat Buffet">
+                        <img src="buffet-breakfast.jpg" alt="Breakfast Buffet">
                         <h4>Breakfast Package</h4>
                         <a href="package-breakfast.html" class="btn btn-view-menu">VIEW DETAILS</a>
                     </div>
 
                     <div class="menu-card">
-                        <img src="breakfast-buffet.jpg" alt="Western Buffet">
-                        <h4>Western Cuisine Buffet</h4>
-                        <a href="buffet-western.html" class="btn btn-view-menu">VIEW DETAILS</a>
+                        <img src="buffet-breakfast.jpg" alt="Breakfast Buffet">
+                        <h4>Breakfast Package</h4>
+                        <a href="package-breakfast.html" class="btn btn-view-menu">VIEW DETAILS</a>
                     </div>
-
+                    
                     <div class="menu-card">
-                        <img src="breakfast-buffet.jpg" alt="Breakfast Buffet">
-                        <h4>Breakfast Buffet</h4>
-                        <a href="buffet-breakfast.html" class="btn btn-view-menu">VIEW DETAILS</a>
-                    </div>
-
-                    <div class="menu-card">
-                        <img src="breakfast-buffet.jpg" alt="Lunch Buffet">
-                        <h4>Lunch Buffet</h4>
-                        <a href="buffet-lunch.html" class="btn btn-view-menu">VIEW DETAILS</a>
-                    </div>
-
-                    <div class="menu-card">
-                        <img src="breakfast-buffet.jpg" alt="Dinner Buffet">
-                        <h4>Dinner Buffet</h4>
-                        <a href="buffet-dinner.html" class="btn btn-view-menu">VIEW DETAILS</a>
+                        <img src="buffet-breakfast.jpg" alt="Breakfast Buffet">
+                        <h4>Breakfast Package</h4>
+                        <a href="package-breakfast.html" class="btn btn-view-menu">VIEW DETAILS</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('.nav');
+
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function () {
+                    nav.classList.toggle('active');
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function (event) {
+                    if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
+                        nav.classList.remove('active');
+                    }
+                });
+
+                // Close menu when clicking on links
+                nav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        nav.classList.remove('active');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
