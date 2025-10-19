@@ -401,6 +401,30 @@
             <p>Total: <span id="total-price">RM2.00</span> / pax</p>
             <button class="send-whatsapp-btn" id="send-whatsapp-btn">📱 Send via WhatsApp</button>
         </div>
+        <!-- Reservation Form -->
+        <div id="reservation-form" style="display:none; text-align:center; margin-top:25px;">
+            <h4 style="color:#ff1d1d; margin-bottom:10px;">Reservation Details</h4>
+            <p style="font-size:0.9rem; color:#555;">Please fill in your event details before sending your order.</p>
+
+            <form id="reservationDetails"
+                style="max-width:400px; margin:auto; display:flex; flex-direction:column; gap:10px;">
+                <input type="text" id="custName" placeholder="Name" required
+                    style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+                <input type="tel" id="custPhone" placeholder="Contact Number (e.g. 0175525805)" required
+                    style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+                <input type="date" id="eventDate" required
+                    style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+                <input type="time" id="eventTime" required
+                    style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+                <input type="text" id="eventVenue" placeholder="Event Venue / Location" required
+                    style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+                <input type="number" id="eventPax" placeholder="Number of Guest" required
+                    style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+
+                <button type="button" id="confirm-whatsapp" class="send-whatsapp-btn">✅ Confirm & Send via
+                    WhatsApp</button>
+            </form>
+        </div>
     </section>
 
     <div class="sticky-total">Total: <span id="sticky-total">RM2.00</span> / pax
@@ -411,7 +435,6 @@
             // Mobile menu toggle
             const menuToggle = document.querySelector(".menu-toggle");
             const nav = document.querySelector(".nav");
-
             if (menuToggle) {
                 menuToggle.addEventListener("click", () => {
                     nav.classList.toggle("active");
@@ -420,11 +443,13 @@
 
             const basePrice = 2.0;
             let total = basePrice;
-            const totalDisplay = document.getElementById('total-price');
-            const selectedList = document.getElementById('selected-items');
-            const toggleBtn = document.getElementById('toggleSummary');
-            const collapseContent = document.getElementById('collapseContent');
-            const whatsappBtn = document.getElementById('send-whatsapp-btn');
+            const totalDisplay = document.getElementById("total-price");
+            const selectedList = document.getElementById("selected-items");
+            const toggleBtn = document.getElementById("toggleSummary");
+            const collapseContent = document.getElementById("collapseContent");
+            const sendBtn = document.getElementById("send-whatsapp-btn");
+            const confirmBtn = document.getElementById("confirm-whatsapp");
+            const formDiv = document.getElementById("reservation-form");
             const phoneNumber = "60175525805";
 
             const categoryOrder = [
@@ -434,10 +459,10 @@
 
             const selections = {};
 
-            // ✅ Allow multiple selections per category
+            // ✅ Handle item selections
             document.querySelectorAll('input[type="checkbox"]').forEach(box => {
-                const category = box.closest('.category').dataset.category;
-                box.addEventListener('change', () => {
+                const category = box.closest(".category").dataset.category;
+                box.addEventListener("change", () => {
                     const item = box.value;
                     const price = parseFloat(box.dataset.price);
 
@@ -460,7 +485,7 @@
             });
 
             function updateSelectedList() {
-                selectedList.innerHTML = '';
+                selectedList.innerHTML = "";
                 const allItems = [];
 
                 categoryOrder.forEach(cat => {
@@ -471,7 +496,7 @@
                     selectedList.innerHTML = "<li style='color:#777;'>No items selected yet.</li>";
                 } else {
                     allItems.forEach(i => {
-                        const li = document.createElement('li');
+                        const li = document.createElement("li");
                         li.innerHTML = `<strong>${i.name}</strong> ${i.price > 0 ? '(+RM' + i.price + ')' : ''}`;
                         selectedList.appendChild(li);
                     });
@@ -480,50 +505,76 @@
                 totalDisplay.textContent = `RM${total.toFixed(2)}`;
             }
 
+            // Toggle show/hide summary
             if (toggleBtn) {
-                toggleBtn.addEventListener('click', () => {
-                    const visible = collapseContent.style.display === 'block';
-                    collapseContent.style.display = visible ? 'none' : 'block';
-                    toggleBtn.textContent = visible ? 'Show Selected Items ▼' : 'Hide Selected Items ▲';
+                toggleBtn.addEventListener("click", () => {
+                    const visible = collapseContent.style.display === "block";
+                    collapseContent.style.display = visible ? "none" : "block";
+                    toggleBtn.textContent = visible ? "Show Selected Items ▼" : "Hide Selected Items ▲";
                 });
             }
 
-            // ✅ WhatsApp Send Button
-            if (whatsappBtn) {
-                whatsappBtn.addEventListener('click', () => {
-                    if (Object.keys(selections).length === 0) {
-                        alert("Please select at least one item before sending.");
-                        return;
+            // ✅ Step 1: Show form
+            sendBtn.addEventListener("click", () => {
+                if (Object.keys(selections).length === 0) {
+                    alert("Please select at least one item before continuing.");
+                    return;
+                }
+
+                sendBtn.style.display = "none";
+                formDiv.style.display = "block";
+                formDiv.scrollIntoView({ behavior: "smooth" });
+            });
+
+            // ✅ Step 2: Confirm and send WhatsApp
+            confirmBtn.addEventListener("click", () => {
+                const name = document.getElementById("custName").value.trim();
+                const phone = document.getElementById("custPhone").value.trim();
+                const date = document.getElementById("eventDate").value;
+                const time = document.getElementById("eventTime").value;
+                const venue = document.getElementById("eventVenue").value.trim();
+                const pax = document.getElementById("eventPax").value.trim();
+
+                if (!name || !phone || !date || !time || !venue || !pax) {
+                    alert("Please fill in all reservation details.");
+                    return;
+                }
+
+                const packageType = "Breakfast Buffet";
+                let message = `🍳 *${packageType} Selection*\n\n`;
+                message += `*Reservation Details:*\n`;
+                message += `👤 Name: ${name}\n`;
+                message += `📞 Contact: ${phone}\n`;
+                message += `📅 Date: ${date}\n`;
+                message += `🕒 Time: ${time}\n`;
+                message += `📍 Venue: ${venue}\n`;
+                message += `👥 Pax: ${pax}\n\n`;
+                message += `*Menu Items:*\n`;
+
+                categoryOrder.forEach(cat => {
+                    if (selections[cat]) {
+                        selections[cat].forEach(i => {
+                            message += `- ${i.name} ${i.price > 0 ? '(+RM' + i.price + ')' : ''}\n`;
+                        });
                     }
-
-                    const packageType = "Breakfast Buffet"; // fixed name
-                    let message = `🍳 *${packageType} Selection*\n`;
-                    message += `Here's my selected menu:\n\n`;
-                    message += `*Menu Items:*\n`;
-
-                    // Add menu items
-                    categoryOrder.forEach(cat => {
-                        if (selections[cat]) {
-                            selections[cat].forEach(i => {
-                                message += `- ${i.name} ${i.price > 0 ? '(+RM' + i.price + ')' : ''}\n`;
-                            });
-                        }
-                    });
-
-                    message += `\n💵 *Total Price:* RM${total.toFixed(2)} per pax\n\n`;
-                    message += `Please confirm the order details.\n\n`;
-                    message += `───────────────────────\n`;
-                    message += `Sent from *MASTER GRILL* 🍽️\n`;
-                    message += `www.mastergrillfw.com`;
-
-                    const encodedMsg = encodeURIComponent(message);
-                    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
-                    window.open(whatsappURL, '_blank');
                 });
-            }
 
+                message += `\n💵 *Total Price:* RM${total.toFixed(2)} per pax\n\n`;
+                message += `Please confirm the order details.\n\n`;
+                message += `───────────────────────\n`;
+                message += `Sent from *MASTER GRILL* • ${packageType} 🍽️\nwww.mastergrillfw.com`;
+
+                const encodedMsg = encodeURIComponent(message);
+                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+                window.open(whatsappURL, "_blank");
+
+                // Reset UI after sending
+                formDiv.style.display = "none";
+                sendBtn.style.display = "block";
+            });
         });
     </script>
+
 
 </body>
 
