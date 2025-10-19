@@ -2,430 +2,450 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Breakfast Buffet | MasterGrill</title>
-    <link rel="icon" href="logo.png" />
-    <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cinzel:wght@400;700&display=swap"
-        rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Breakfast Buffet | MasterGrill</title>
+  <link rel="icon" href="logo.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cinzel:wght@400;700&display=swap"
+    rel="stylesheet">
 
-    <style>
-        :root {
-            --accent: #ff1d1d;
-            --text: #222;
-        }
+  <style>
+    :root {
+      --accent: #ff1d1d;
+      --text: #222;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #fafafa;
-            color: var(--text);
-            margin: 0;
-            padding: 0;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fafafa;
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+    }
 
-        /* ====== Header ====== */
-        header {
-            background: #fff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    /* ====== Header ====== */
+    header {
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-        .header-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 15px;
-        }
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 15px;
+    }
 
-        .brand {
-            display: flex;
-            align-items: center;
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+    }
 
-        .logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 12px;
-        }
+    .logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 12px;
+    }
 
-        .brand-text h1 {
-            font-family: 'Cinzel', serif;
-            margin: 0;
-            font-size: 1.4rem;
-        }
+    .brand-text h1 {
+      font-family: 'Cinzel', serif;
+      margin: 0;
+      font-size: 1.4rem;
+    }
 
-        .brand-text-master {
-            color: #222;
-        }
+    .brand-text-master {
+      color: #222;
+    }
 
-        .brand-text-grill {
-            color: var(--accent);
-        }
+    .brand-text-grill {
+      color: var(--accent);
+    }
 
-        .brand-subtitle {
-            font-size: 0.8rem;
-            color: #777;
-            margin-top: 3px;
-        }
+    .brand-subtitle {
+      font-size: 0.8rem;
+      color: #777;
+      margin-top: 3px;
+    }
 
-        .nav a {
-            text-decoration: none;
-            color: #222;
-            margin: 0 10px;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
+    .nav a {
+      text-decoration: none;
+      color: #222;
+      margin: 0 10px;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
 
-        .nav a:hover {
-            color: var(--accent);
-        }
+    .nav a:hover {
+      color: var(--accent);
+    }
 
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.6rem;
-            cursor: pointer;
-        }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+    }
 
-        @media (max-width: 768px) {
-            .nav {
-                display: none;
-                flex-direction: column;
-                background: #fff;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                width: 100%;
-                text-align: center;
-                border-top: 1px solid #eee;
-            }
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        border-top: 1px solid #eee;
+      }
 
-            .nav.active {
-                display: flex;
-            }
+      .nav.active {
+        display: flex;
+      }
 
-            .menu-toggle {
-                display: block;
-            }
+      .menu-toggle {
+        display: block;
+      }
 
-            .nav a {
-                padding: 10px 0;
-                border-bottom: 1px solid #eee;
-            }
-        }
+      .nav a {
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+      }
+    }
 
-        /* ====== Breakfast Section ====== */
-        .section-head {
-            text-align: center;
-            margin-top: 40px;
-        }
+    /* ====== Breakfast Section ====== */
+    .section-head {
+      text-align: center;
+      margin-top: 40px;
+    }
 
-        .section-head h3 {
-            color: var(--accent);
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
+    .section-head h3 {
+      color: var(--accent);
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
 
-        .accent-line {
-            width: 80px;
-            height: 3px;
-            background: var(--accent);
-            margin: 10px auto 20px;
-            border-radius: 4px;
-        }
+    .accent-line {
+      width: 80px;
+      height: 3px;
+      background: var(--accent);
+      margin: 10px auto 20px;
+      border-radius: 4px;
+    }
 
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
 
-        .menu-card {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-            padding: 20px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-            border: 3px solid transparent;
-        }
+    .menu-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      padding: 20px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      border: 3px solid transparent;
+    }
 
-        .menu-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-        }
+    .menu-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
 
-        .menu-card.selected {
-            border: 3px solid var(--accent);
-            box-shadow: 0 8px 18px rgba(255, 29, 29, 0.25);
-            transform: scale(1.02);
-        }
+    .menu-card.selected {
+      border: 3px solid var(--accent);
+      box-shadow: 0 8px 18px rgba(255, 29, 29, 0.25);
+      transform: scale(1.02);
+    }
 
-        .menu-card h4 {
-            color: var(--accent);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
+    .menu-card h4 {
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
 
-        .menu-card ul {
-            list-style-type: disc;
-            margin-left: 20px;
-            color: #333;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
+    .menu-card ul {
+      list-style-type: disc;
+      margin-left: 20px;
+      color: #333;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
 
-        /* ====== Buttons ====== */
-        .button-group {
-            text-align: center;
-            margin-top: 30px;
-        }
+    /* ====== Buttons ====== */
+    .button-group {
+      text-align: center;
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
 
-        /* WhatsApp button */
-        .send-whatsapp-btn {
-            background: linear-gradient(145deg, #25D366, #128C7E);
-            color: #fff;
-            border: none;
-            text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-            transition: transform 0.2s ease;
-        }
+    .send-whatsapp-btn,
+    .customize-btn {
+      width: 100%;
+      max-width: 320px;
+      font-size: 1rem;
+      text-align: center;
+      border-radius: 8px;
+      padding: 12px 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
 
-        .send-whatsapp-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
-        }
+    .send-whatsapp-btn {
+      background: linear-gradient(145deg, #25D366, #128C7E);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+    }
 
-        /* Customize button */
-        .customize-btn {
-            background: var(--accent);
-            color: #fff;
-            border: none;
-            text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 12px rgba(192, 52, 52, 0.4);
-            transition: background 0.3s ease;
-        }
+    .send-whatsapp-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
+    }
 
-        .customize-btn:hover {
-            background: #d60000;
-        }
+    .customize-btn {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(192, 52, 52, 0.4);
+    }
 
-        .note {
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 8px;
-        }
+    .customize-btn:hover {
+      background: #d60000;
+    }
 
-        /* ===== Responsive Buttons Fix ===== */
-        .button-group {
-            text-align: center;
-            margin-top: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
+    .note {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 8px;
+    }
 
-        .send-whatsapp-btn,
-        .customize-btn {
-            width: 100%;
-            max-width: 320px;
-            font-size: 1rem;
-            text-align: center;
-        }
+    /* ===== Reservation Form ===== */
+    #reservation-form {
+      display: none;
+      text-align: center;
+      margin-top: 25px;
+    }
 
-        /* Mobile Optimization */
-        @media (max-width: 600px) {
+    #reservation-form input {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
 
-            .send-whatsapp-btn,
-            .customize-btn {
-                width: 90%;
-                padding: 14px 0;
-                font-size: 0.95rem;
-            }
-
-            .button-group {
-                gap: 10px;
-                margin-top: 20px;
-            }
-
-            .note {
-                font-size: 0.8rem;
-                color: #666;
-                margin-top: 8px;
-            }
-        }
-    </style>
+    #reservation-form form {
+      max-width: 400px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="header-inner">
-            <div class="brand">
-                <img src="logo.png" alt="MasterGrill logo" class="logo">
-                <div class="brand-text">
-                    <h1><span class="brand-text-master">MASTER</span><span class="brand-text-grill">GRILL</span></h1>
-                    <p class="brand-subtitle">Grill · Smoke · Feast</p>
-                </div>
-            </div>
-            <button class="menu-toggle">☰</button>
-            <nav class="nav">
-                <a href="index.html">Home</a>
-                <a href="index.html#about">About</a>
-                <a href="index.html#menu">Menu</a>
-                <a href="index.html#gallery">Gallery</a>
-                <a href="index.html#contact">Contact</a>
-            </nav>
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <img src="logo.png" alt="MasterGrill logo" class="logo">
+        <div class="brand-text">
+          <h1><span class="brand-text-master">MASTER</span><span class="brand-text-grill">GRILL</span></h1>
+          <p class="brand-subtitle">Grill · Smoke · Feast</p>
         </div>
-    </header>
+      </div>
+      <button class="menu-toggle">☰</button>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#menu">Menu</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Breakfast Section -->
-    <section>
-        <div class="section-head">
-            <h3>🍳 Breakfast Buffet Packages</h3>
-            <div class="accent-line"></div>
-            <p>Choose one of our curated breakfast sets, then send your selection via WhatsApp.</p>
-        </div>
+  <!-- Breakfast Section -->
+  <section>
+    <div class="section-head">
+      <h3>🍳 Breakfast Buffet Packages</h3>
+      <div class="accent-line"></div>
+      <p>Choose one of our curated breakfast sets, then send your selection via WhatsApp.</p>
+    </div>
 
-        <div class="menu-grid" id="menuGrid">
-            <div class="menu-card" data-menu="A" data-price="5.00">
-                <h4>Breakfast Set A – RM5.00</h4>
-                <ul>
-                    <li>2 x Appettizer</li>
-                    <li>Sandwich / Chicken Nuggets / Sausages</li>
-                    <li>Hot Tea with Milk / Hot Coffee without Milk</li>
-                </ul>
-            </div>
+    <div class="menu-grid" id="menuGrid">
+      <div class="menu-card" data-menu="A" data-price="5.00">
+        <h4>Breakfast Set A – RM5.00</h4>
+        <ul>
+          <li>2 x Appettizer</li>
+          <li>Sandwich / Chicken Nuggets / Sausages</li>
+          <li>Hot Tea with Milk / Hot Coffee without Milk</li>
+        </ul>
+      </div>
 
-            <div class="menu-card" data-menu="B" data-price="7.00">
-                <h4>Breakfast Set B – RM7.00</h4>
-                <ul>
-                    <li>Fried Mee Hoon</li>
-                    <li>Chicken Sausage</li>
-                    <li>Cucumber Slice & Sambal</li>
-                    <li>Hot Tea with Milk</li>
-                </ul>
-            </div>
+      <div class="menu-card" data-menu="B" data-price="7.00">
+        <h4>Breakfast Set B – RM7.00</h4>
+        <ul>
+          <li>Fried Mee Hoon</li>
+          <li>Chicken Sausage</li>
+          <li>Cucumber Slice & Sambal</li>
+          <li>Hot Tea with Milk</li>
+        </ul>
+      </div>
 
-            <div class="menu-card" data-menu="C" data-price="9.00">
-                <h4>Breakfast Set C – RM9.00</h4>
-                <ul>
-                    <li>Nasi Lemak</li>
-                    <li>Ayam Goreng</li>
-                    <li>Sambal Sotong</li>
-                    <li>Telur Rebus</li>
-                    <li>Hot Tea with Milk</li>
-                </ul>
-            </div>
+      <div class="menu-card" data-menu="C" data-price="9.00">
+        <h4>Breakfast Set C – RM9.00</h4>
+        <ul>
+          <li>Nasi Lemak</li>
+          <li>Ayam Goreng</li>
+          <li>Sambal Sotong</li>
+          <li>Telur Rebus</li>
+          <li>Hot Tea with Milk</li>
+        </ul>
+      </div>
 
-            <div class="menu-card" data-menu="D" data-price="11.00">
-                <h4>Breakfast Set D – RM11.00</h4>
-                <ul>
-                    <li>2 x Appettizer</li>
-                    <li>Nasi Minyak</li>
-                    <li>Ayam Masak Merah</li>
-                    <li>Hot Tea with Milk</li>
-                </ul>
-            </div>
+      <div class="menu-card" data-menu="D" data-price="11.00">
+        <h4>Breakfast Set D – RM11.00</h4>
+        <ul>
+          <li>2 x Appettizer</li>
+          <li>Nasi Minyak</li>
+          <li>Ayam Masak Merah</li>
+          <li>Hot Tea with Milk</li>
+        </ul>
+      </div>
 
-            <div class="menu-card" data-menu="E" data-price="13.00">
-                <h4>Breakfast Set E – RM13.00</h4>
-                <ul>
-                    <li>2 x Appettizer</li>
-                    <li>Nasi Lemak</li>
-                    <li>Fried Mee Hoon</li>
-                    <li>Ayam Goreng</li>
-                    <li>Telur Mata</li>
-                    <li>Hot Tea with Milk</li>
-                </ul>
-            </div>
+      <div class="menu-card" data-menu="E" data-price="13.00">
+        <h4>Breakfast Set E – RM13.00</h4>
+        <ul>
+          <li>2 x Appettizer</li>
+          <li>Nasi Lemak</li>
+          <li>Fried Mee Hoon</li>
+          <li>Ayam Goreng</li>
+          <li>Telur Mata</li>
+          <li>Hot Tea with Milk</li>
+        </ul>
+      </div>
 
-            <div class="menu-card" data-menu="F" data-price="15.00">
-                <h4>Breakfast Set F – RM15.00</h4>
-                <ul>
-                    <li>2 x Appettizer</li>
-                    <li>Nasi Goreng</li>
-                    <li>Fried Mee Hoon</li>
-                    <li>Ayam Goreng</li>
-                    <li>Telur Dadar</li>
-                    <li>Hot Tea with Milk</li>
-                </ul>
-            </div>
-        </div>
-        <div class="button-group">
-            <button class="send-whatsapp-btn" id="send-whatsapp-btn">📱 Send via WhatsApp</button>
-            <a href="custom-breakfast.html" class="customize-btn">🍽️ Customize My Own Menu</a>
-            <p class="note">(Please select one menu above before sending.)</p>
-        </div>
-    </section>
+      <div class="menu-card" data-menu="F" data-price="15.00">
+        <h4>Breakfast Set F – RM15.00</h4>
+        <ul>
+          <li>2 x Appettizer</li>
+          <li>Nasi Goreng</li>
+          <li>Fried Mee Hoon</li>
+          <li>Ayam Goreng</li>
+          <li>Telur Dadar</li>
+          <li>Hot Tea with Milk</li>
+        </ul>
+      </div>
+    </div>
 
-    <script>
-        // Mobile nav toggle
-        document.querySelector(".menu-toggle").addEventListener("click", () => {
-            document.querySelector(".nav").classList.toggle("active");
-        });
+    <div class="button-group">
+      <button class="send-whatsapp-btn" id="send-whatsapp-btn">📱 Send via WhatsApp</button>
+      <a href="custom-breakfast.html" class="customize-btn">🍽️ Customize My Own Menu</a>
+      <p class="note">(Please select one menu above before sending.)</p>
+    </div>
 
-        // Menu card selection
-        const menuCards = document.querySelectorAll('.menu-card');
-        let selectedMenu = null;
+    <!-- Reservation Form -->
+    <div id="reservation-form">
+      <h4 style="color:#ff1d1d; margin-bottom:10px;">Reservation Details</h4>
+      <form id="reservationDetails">
+        <input type="text" id="custName" placeholder="Full Name" required>
+        <input type="tel" id="custPhone" placeholder="Contact Number (e.g. 0175525805)" required>
+        <input type="date" id="eventDate" required>
+        <input type="time" id="eventTime" required>
+        <input type="text" id="eventVenue" placeholder="Event Venue / Location" required>
+        <input type="number" id="numPax" placeholder="Number of Pax" min="1" required>
+        <button type="button" id="confirm-whatsapp" class="send-whatsapp-btn">✅ Confirm & Send WhatsApp</button>
+      </form>
+    </div>
+  </section>
 
-        menuCards.forEach(card => {
-            card.addEventListener('click', () => {
-                menuCards.forEach(c => c.classList.remove('selected'));
-                card.classList.add('selected');
-                selectedMenu = card;
-            });
-        });
+  <script>
+    // Mobile nav toggle
+    document.querySelector(".menu-toggle").addEventListener("click", () => {
+      document.querySelector(".nav").classList.toggle("active");
+    });
 
-        // ✅ WhatsApp button logic (formatted + branding)
-        document.getElementById('send-whatsapp-btn').addEventListener('click', () => {
-            if (!selectedMenu) {
-                alert('Please select a menu before sending.');
-                return;
-            }
+    // Menu card selection
+    const menuCards = document.querySelectorAll(".menu-card");
+    let selectedMenu = null;
 
-            const menuName = selectedMenu.querySelector('h4').innerText;
-            const items = Array.from(selectedMenu.querySelectorAll('li')).map(li => `- ${li.textContent}`).join('\n');
-            const price = selectedMenu.dataset.price;
-            const packageType = "Breakfast Buffet"; // fixed name for this page
-            const phoneNumber = '60175525805';
+    menuCards.forEach(card => {
+      card.addEventListener("click", () => {
+        menuCards.forEach(c => c.classList.remove("selected"));
+        card.classList.add("selected");
+        selectedMenu = card;
+      });
+    });
 
-            // Construct message
-            let message = `🍳 *${packageType} Selection*\n`;
-            message += `Here's my selected menu:\n\n`;
-            message += `*Menu Items:*\n${items}\n\n`;
-            message += `💵 *Total Price:* RM${price} per pax\n\n`;
-            message += `Please confirm the order details.\n\n`;
-            message += `───────────────────────\n`;
-            message += `Sent from *MASTER GRILL*\n`;
-            message += `www.mastergrillfw.com`;
+    const sendBtn = document.getElementById("send-whatsapp-btn");
+    const confirmBtn = document.getElementById("confirm-whatsapp");
+    const formDiv = document.getElementById("reservation-form");
 
-            const encodedMsg = encodeURIComponent(message);
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
-            window.open(whatsappURL, '_blank');
-        });
-    </script>
+    sendBtn.addEventListener("click", () => {
+      if (!selectedMenu) {
+        alert("Please select a menu before continuing.");
+        return;
+      }
+      sendBtn.style.display = "none";
+      formDiv.style.display = "block";
+      formDiv.scrollIntoView({ behavior: "smooth" });
+    });
+
+    confirmBtn.addEventListener("click", () => {
+      const name = document.getElementById("custName").value.trim();
+      const phone = document.getElementById("custPhone").value.trim();
+      const date = document.getElementById("eventDate").value;
+      const time = document.getElementById("eventTime").value;
+      const venue = document.getElementById("eventVenue").value.trim();
+      const numPax = document.getElementById("numPax").value.trim();
+
+      if (!name || !phone || !date || !time || !venue || !numPax) {
+        alert("Please fill in all reservation details.");
+        return;
+      }
+
+      const menuName = selectedMenu.querySelector("h4").innerText;
+      const items = Array.from(selectedMenu.querySelectorAll("li")).map(li => `- ${li.textContent}`).join("\n");
+      const price = selectedMenu.dataset.price;
+      const packageType = "Breakfast Buffet";
+      const phoneNumber = "60175525805";
+
+      let message = `🍳 *${packageType} Selection*\n\n`;
+      message += `*Reservation Details:*\n`;
+      message += `👤 Name: ${name}\n📞 Contact: ${phone}\n📅 Date: ${date}\n🕒 Time: ${time}\n📍 Venue: ${venue}\n👥 Pax: ${numPax}\n\n`;
+      message += `*Menu Selected:*\n${menuName}\n\n`;
+      message += `*Menu Items:*\n${items}\n\n`;
+      message += `💵 *Total Price:* RM${price} per pax\n\n`;
+      message += `Please confirm the order details.\n\n`;
+      message += `───────────────────────\nSent from *MASTER GRILL* 🍽️\nwww.mastergrillfw.com`;
+
+      const encodedMsg = encodeURIComponent(message);
+      const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+      window.open(whatsappURL, "_blank");
+
+      formDiv.style.display = "none";
+      sendBtn.style.display = "block";
+    });
+  </script>
 </body>
 
 </html>
