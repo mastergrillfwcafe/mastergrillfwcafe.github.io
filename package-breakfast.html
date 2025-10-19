@@ -398,27 +398,37 @@
             });
         });
 
-        // WhatsApp button logic
-        document.getElementById('send-whatsapp-btn').addEventListener('click', () => {
-            if (!selectedMenu) {
-                alert('Please select a menu before sending.');
-                return;
+            // ✅ WhatsApp Send Button
+            if (whatsappBtn) {
+                whatsappBtn.addEventListener('click', () => {
+                    if (Object.keys(selections).length === 0) {
+                        alert("Please select at least one item before sending.");
+                        return;
+                    }
+
+                    const packageType = "Breakfast Buffet"; // fixed name
+                    let message = `🍳 *${packageType} Selection*\n`;
+                    message += `Here's my selected menu:\n\n`;
+                    message += `*Menu Items:*\n`;
+
+                    // Add menu items
+                    categoryOrder.forEach(cat => {
+                        if (selections[cat]) {
+                            selections[cat].forEach(i => {
+                                message += `- ${i.name} ${i.price > 0 ? '(+RM' + i.price + ')' : ''}\n`;
+                            });
+                        }
+                    });
+
+                    message += `\n💵 *Total Price:* RM${total.toFixed(2)} per pax\n\n`;
+                    message += `Please confirm the order details.`;
+
+                    const encodedMsg = encodeURIComponent(message);
+                    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+                    window.open(whatsappURL, '_blank');
+                });
             }
 
-            const menuName = selectedMenu.querySelector('h4').innerText;
-            const items = Array.from(selectedMenu.querySelectorAll('li')).map(li => `- ${li.textContent}`).join('%0A');
-            const price = selectedMenu.dataset.price;
-
-            const message =
-                `🍳 *Breakfast Buffet Order*%0A` +
-                `Selected Package: *${menuName}*%0A%0A` +
-                `Menu Items:%0A${items}%0A%0A` +
-                `💵 Total Price: RM${price} per pax%0A%0A` +
-                `Please confirm the order details.`;
-
-            const phoneNumber = '60175525805';
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
-            window.open(whatsappURL, '_blank');
         });
     </script>
 </body>
