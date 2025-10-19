@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your Buffet Package | MasterGrill</title>
+    <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="buttons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --accent: #ff1d1d;
+            --light: #fff5f5;
+            --border: #ffd6d6;
+            --text: #222;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fafafa;
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header (same as main page) */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 15px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        .brand-text h1 {
+            font-family: 'Cinzel', serif;
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .brand-text-master {
+            color: #222;
+        }
+
+        .brand-text-grill {
+            color: var(--accent);
+        }
+
+        .brand-subtitle {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 3px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #222;
+            margin: 0 10px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: var(--accent);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+                flex-direction: column;
+                background: #fff;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                border-top: 1px solid #eee;
+            }
+
+            .nav.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav a {
+                padding: 10px 0;
+                border-bottom: 1px solid #eee;
+            }
+        }
+
+        /* Buffet Builder */
+        .buffet-container {
+            max-width: 1100px;
+            margin: 40px auto 100px;
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .package-selector {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .package-selector select {
+            padding: 8px 12px;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            background: #fff;
+            color: var(--text);
+            cursor: pointer;
+            transition: border 0.3s ease, box-shadow 0.2s ease;
+        }
+
+        .package-selector select:hover {
+            box-shadow: 0 0 6px rgba(255, 29, 29, 0.3);
+        }
+
+        .category {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #fff;
+            transition: box-shadow 0.2s;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 8px 30px;
+        }
+
+        .category h3 {
+            grid-column: 1 / -1;
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 4px;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: background 0.25s ease;
+        }
+
+        label:hover {
+            background: rgba(255, 29, 29, 0.08);
+        }
+
+        input[type="checkbox"] {
+            accent-color: var(--accent);
+            margin-right: 10px;
+        }
+
+        .summary {
+            background: var(--light);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 35px;
+        }
+
+        .summary h3 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+
+        .summary ul {
+            margin: 10px 0;
+            padding-left: 0;
+            list-style: none;
+            /* Remove default bullets */
+        }
+
+        .summary ul li {
+            position: relative;
+            font-size: 1rem;
+            color: #222;
+            line-height: 1.5;
+            margin: 6px 0;
+            padding-left: 22px;
+            /* Space for custom bullet */
+        }
+
+        /* Custom red bullet */
+        .summary ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.2rem;
+            line-height: 1;
+            top: 0;
+        }
+
+        .send-whatsapp-btn {
+            display: block;
+            margin: 15px auto 0;
+            /* Center horizontally */
+            background: linear-gradient(145deg, #25D366, #128C7E);
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            transition: transform 0.2s ease;
+            text-align: center;
+        }
+
+        .send-whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Sticky Total Bar */
+        .sticky-total {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 1rem;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-total {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <div class="brand">
+                <img src="logo.png" alt="MasterGrill logo" class="logo">
+                <div class="brand-text">
+                    <h1><span class="brand-text-master">MASTER</span><span class="brand-text-grill">GRILL</span></h1>
+                    <p class="brand-subtitle">Grill · Smoke · Feast</p>
+                </div>
+            </div>
+            <button class="menu-toggle">☰</button>
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#menu">Menu</a>
+                <a href="index.html#gallery">Gallery</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Buffet Builder -->
+    <section class="buffet-container">
+        <h2>Customize Your Breakfast Menu</h2>
+
+        <!-- APPETIZER -->
+        <div class="category" data-category="APPETIZER">
+            <h3>🥠 APPETIZER</h3>
+            <label><input type="checkbox" data-price="1" value="Kuih-muih Assorted"><span> Kuih-muih Assorted (+RM1)</span></label>
+            <label><input type="checkbox" data-price="1" value="Steamed Sausages"> Steamed Sausages (+RM1)</span></label>
+            <label><input type="checkbox" data-price="1" value="Chicken Nuggets"><span> Chicken Nuggets (+RM1)</span></label>
+            <label><input type="checkbox" data-price="2" value="Bubur Kacang Hijau / Pulut Hitam"><span> Bubur Kacang Hijau / Pulut Hitam (+RM2)</span></label>
+            <label><input type="checkbox" data-price="2" value="Popcorn Chicken"><span> Popcorn Chicken (+RM2)</span></label>
+        </div>
+
+        <!-- RICE -->
+        <div class="category" data-category="RICE">
+            <h3>🍚 RICE</h3>
+            <label><input type="checkbox" data-price="3" value="Nasi Lemak"> Nasi Lemak (+RM3)</label>
+            <label><input type="checkbox" data-price="2" value="Kampung Fried Rice"> Kampung Fried Rice (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Chinese Fried Rice"> Chinese Fried Rice (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Egg Fried Rice"> Egg Fried Rice (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Garlic Butter Rice"> Garlic Butter Rice (+RM2)</label>
+        </div>
+
+        <!-- NOODLE -->
+        <div class="category" data-category="NOODLE">
+            <h3>🍜 NOODLE</h3>
+            <label><input type="checkbox" data-price="2" value="Fried Mee Mamak"> Fried Mee Mamak (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Fried Kuey Teow"> Fried Kuey Teow (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Fried Mee Hoon"> Fried Mee Hoon (+RM2)</label>
+        </div>
+
+        <!-- CHICKEN -->
+        <div class="category" data-category="CHICKEN">
+            <h3>🍗 CHICKEN</h3>
+            <label><input type="checkbox" data-price="2" value="Ayam Masak Kicap"> Ayam Masak Kicap (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Kari Ayam"> Kari Ayam (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Ayam Masak Merah"> Ayam Masak Merah (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Ayam Black Pepper"> Ayam Black Pepper (+RM2)</label>
+            <label><input type="checkbox" data-price="3" value="Ayam Goreng Berempah"> Ayam Goreng Berempah (+RM3)</label>
+        </div>
+
+        <!-- VEGETABLE -->
+        <div class="category" data-category="VEGETABLE">
+            <h3>🥬 VEGETABLE</h3>
+            <label><input type="checkbox" data-price="1" value="Taugeh Goreng"> Taugeh Goreng (+RM1)</label>
+            <label><input type="checkbox" data-price="1" value="Kobis Goreng"> Kobis Goreng (+RM1)</label>
+            <label><input type="checkbox" data-price="1" value="Sayur Sawi Goreng"> Sayur Sawi Goreng (+RM1)</label>
+            <label><input type="checkbox" data-price="1" value="Kangkung Goreng Belacan"> Kangkung Goreng Belacan (+RM1)</label>
+            <label><input type="checkbox" data-price="2" value="Stir-Fried Mixed Vegetables"> Stir-Fried Mixed Vegetables (+RM2)</label>
+        </div>
+
+        <!-- COLD DRINK -->
+        <div class="category" data-category="COLD DRINK">
+            <h3>🥤 COLD DRINK</h3>
+            <label><input type="checkbox" data-price="1" value="Teh Ais"> Teh Ais (+RM1)</label>
+            <label><input type="checkbox" data-price="1" value="Kopi Ais"> Kopi Ais (+RM1)</label>
+            <label><input type="checkbox" data-price="2" value="Ice Lemon Tea"> Ice Lemon Tea (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Iced Honey Lemon"> Iced Honey Lemon (+RM2)</label>
+            <label><input type="checkbox" data-price="3" value="Orange Juice / Apple Juice"> Orange Juice / Apple Juice (+RM3)</label>
+        </div>
+
+        <!-- HOT DRINK -->
+        <div class="category" data-category="HOT DRINK">
+            <h3>🥤 COLD DRINK</h3>
+            <label><input type="checkbox" data-price="2" value="Teh O Panas"> Teh O Panas (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Teh Tarik"> Teh Tarik (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Kopi O Panas"> Kopi O Panas (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Kopi Panas"> Kopi Panas (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Hot Honey Lemon"> Hot Honey Lemon (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Hot Barley"> Hot Barley (+RM2)</label>
+        </div>
+
+        <div class="summary">
+            <h3>🧾 Buffet Summary</h3>
+            <button class="collapsible" id="toggleSummary">Show Selected Items ▼</button>
+            <div class="collapse-content" id="collapseContent">
+                <ul id="selected-items"></ul>
+            </div>
+            <ul id="selected-items"></ul>
+            <p>Total: <span id="total-price">RM2.00</span> / pax</p>
+            <button class="send-whatsapp-btn" id="send-whatsapp-btn">📱 Send via WhatsApp</button>
+        </div>
+    </section>
+
+    <div class="sticky-total">Total: <span id="sticky-total">RM2.00</span> / pax
+    </div>
+
+    <script>
+        // --- Mobile menu toggle ---
+        document.querySelector(".menu-toggle").addEventListener("click", () => {
+            document.querySelector(".nav").classList.toggle("active");
+        });
+
+        const basePrice = 2.0;
+        let total = basePrice;
+        const totalDisplay = document.getElementById('total-price');
+        const stickyDisplay = document.getElementById('sticky-total');
+        const selectedList = document.getElementById('selected-items');
+        const toggleBtn = document.getElementById('toggleSummary');
+        const collapseContent = document.getElementById('collapseContent');
+
+        const categoryOrder = [
+            "SOUP", "APPETIZER", "RICE", "NOODLE", "CHICKEN",
+            "BEEF", "VEGETABLE", "WESTERN", "PASTA", "DESSERT", "COLD DRINK", "HOT DRINK"
+        ];
+
+        const selections = {};
+
+        // --- Handle selection (multi-choice for APPETIZER only) ---
+        document.querySelectorAll('input[type="checkbox"]').forEach(box => {
+            const category = box.closest('.category').dataset.category;
+            box.addEventListener('change', () => {
+                const item = box.value;
+                const price = parseFloat(box.dataset.price);
+                const singleChoiceCategories = [
+                    "RICE", "NOODLE",
+                    "CHICKEN", "BEEF", "VEGETABLE",
+                    "WESTERN", "PASTA", "DESSERT",
+                    "HOT DRINK"
+                ];
+
+                // Initialize category array
+                if (!selections[category]) selections[category] = [];
+
+                // --- SINGLE-CHOICE CATEGORY RULE ---
+                if (singleChoiceCategories.includes(category)) {
+                    const categoryBoxes = box.closest('.category').querySelectorAll('input[type="checkbox"]');
+                    categoryBoxes.forEach(cb => { if (cb !== box) cb.checked = false; });
+
+                    // Remove previous selection price
+                    if (selections[category].length > 0) {
+                        total -= selections[category][0].price;
+                        selections[category] = [];
+                    }
+
+                    // Add the new selected item
+                    if (box.checked) {
+                        selections[category].push({ name: item, price });
+                        total += price;
+                    } else {
+                        delete selections[category];
+                    }
+
+                    // --- MULTI-CHOICE CATEGORY RULE (e.g. APPETIZER) ---
+                } else {
+                    if (box.checked) {
+                        selections[category].push({ name: item, price });
+                        total += price;
+                    } else {
+                        const index = selections[category].findIndex(i => i.name === item);
+                        if (index > -1) {
+                            total -= selections[category][index].price;
+                            selections[category].splice(index, 1);
+                        }
+                        if (selections[category].length === 0) delete selections[category];
+                    }
+                }
+
+                updateSelectedList();
+            });
+        });
+
+        // --- Update list and total display ---
+        function updateSelectedList() {
+            selectedList.innerHTML = '';
+            const allItems = [];
+
+            categoryOrder.forEach(cat => {
+                if (selections[cat]) {
+                    selections[cat].forEach(i => allItems.push(i));
+                }
+            });
+
+            if (allItems.length === 0) {
+                const emptyMsg = document.createElement('li');
+                emptyMsg.textContent = "No items selected yet.";
+                emptyMsg.style.color = "#777";
+                selectedList.appendChild(emptyMsg);
+            } else {
+                allItems.forEach(i => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<strong>${i.name}</strong> ${i.price > 0 ? '(+RM' + i.price + ')' : ''}`;
+                    selectedList.appendChild(li);
+                });
+            }
+
+            totalDisplay.textContent = `RM${total.toFixed(2)}`;
+            if (stickyDisplay) stickyDisplay.textContent = `RM${total.toFixed(2)}`;
+        }
+
+        // --- Collapse toggle ---
+        toggleBtn.addEventListener('click', () => {
+            const visible = collapseContent.style.display === 'block';
+            collapseContent.style.display = visible ? 'none' : 'block';
+            toggleBtn.textContent = visible ? 'Show Selected Items ▼' : 'Hide Selected Items ▲';
+        });
+
+        // --- WhatsApp send ---
+        const whatsappBtn = document.getElementById('send-whatsapp-btn');
+        const phoneNumber = "60175525805";
+        const packageTypeSelect = document.getElementById('package-type');
+
+        whatsappBtn.addEventListener('click', () => {
+            if (Object.keys(selections).length === 0) {
+                alert("Please select at least one item before sending.");
+                return;
+            }
+
+            const packageType = packageTypeSelect.value;
+            let message = `🍽️ *${packageType} Selection*\n\nHere’s my selected menu:\n`;
+
+            categoryOrder.forEach(cat => {
+                if (selections[cat]) {
+                    selections[cat].forEach(i => {
+                        message += `• ${i.name} ${i.price > 0 ? '(+RM' + i.price + ')' : ''}\n`;
+                    });
+                }
+            });
+
+            message += `\n💰 *Total:* RM${total.toFixed(2)} / pax\n`;
+            message += "\nPlease confirm availability. Thank you! 🙏";
+            message += "\n!! THIS IS A TEST ORDER !! 🙏";
+
+            const encodedMsg = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+            window.open(whatsappURL, '_blank');
+        });
+    </script>
+
+
+</body>
+
+</html>

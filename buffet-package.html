@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Buffet Package | MasterGrill</title>
+    <link rel="icon" href="logo.png" />
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<style>
+    /* === Buffet Hero Section === */
+    .buffet-hero {
+        position: relative;
+        background: url('background.jpg') center/cover no-repeat;
+        padding: 80px 0;
+        color: #fff;
+        text-align: center;
+    }
+
+    .buffet-hero .buffet-overlay {
+        position: relative;
+        z-index: 2;
+    }
+
+    .buffet-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        /* Dark overlay for contrast */
+        z-index: 1;
+    }
+
+    /* Ensure text and buttons appear above overlay */
+    .buffet-hero h3,
+    .buffet-hero p,
+    .buffet-hero .menu-grid {
+        position: relative;
+        z-index: 2;
+    }
+
+    .buffet-hero .section-head h3 {
+        color: #fff;
+        font-size: 2rem;
+    }
+
+    .buffet-hero .accent-line {
+        background: var(--accent);
+        height: 3px;
+        width: 80px;
+        margin: 10px auto 20px;
+        border-radius: 5px;
+    }
+
+    .buffet-hero .menu-card {
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .buffet-hero .menu-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-inner">
+            <div class="brand">
+                <img src="logo.png" alt="MASTER GRILL logo" class="logo" />
+                <div class="brand-text">
+                    <h1><span class="brand-text-master">MASTER</span><span class="brand-text-grill">GRILL</span></h1>
+                    <p class="brand-subtitle">Grill · Smoke · Feast</p>
+                </div>
+            </div>
+
+            <button class="menu-toggle">☰</button>
+
+            <nav class="nav">
+                <a href="index.html#top">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#menu">Menu</a>
+                <a href="index.html#gallery">Gallery</a>
+                <a href="index.html#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Buffet Packages -->
+    <section class="buffet-hero">
+        <div class="buffet-overlay">
+            <div class="container">
+                <div class="section-head">
+                    <h3>🍽️ Buffet Packages</h3>
+                    <div class="accent-line"></div>
+                </div>
+
+                <p style="text-align:center; max-width:700px; margin:auto; color:#f2f2f2;">
+                    Choose from our selection of buffet packages — Malaysian, Western, Breakfast, Lunch, or Dinner — all
+                    crafted to suit your event needs.
+                </p>
+
+                <div class="menu-grid" style="margin-top:30px;">
+                    <div class="menu-card">
+                        <img src="buffet-breakfast.jpg" alt="Breakfat Buffet">
+                        <h4>Breakfast Package</h4>
+                        <a href="package-breakfast.html" class="btn btn-view-menu">VIEW DETAILS</a>
+                    </div>
+
+                    <div class="menu-card">
+                        <img src="breakfast-buffet.jpg" alt="Western Buffet">
+                        <h4>Western Cuisine Buffet</h4>
+                        <a href="buffet-western.html" class="btn btn-view-menu">VIEW DETAILS</a>
+                    </div>
+
+                    <div class="menu-card">
+                        <img src="breakfast-buffet.jpg" alt="Breakfast Buffet">
+                        <h4>Breakfast Buffet</h4>
+                        <a href="buffet-breakfast.html" class="btn btn-view-menu">VIEW DETAILS</a>
+                    </div>
+
+                    <div class="menu-card">
+                        <img src="breakfast-buffet.jpg" alt="Lunch Buffet">
+                        <h4>Lunch Buffet</h4>
+                        <a href="buffet-lunch.html" class="btn btn-view-menu">VIEW DETAILS</a>
+                    </div>
+
+                    <div class="menu-card">
+                        <img src="breakfast-buffet.jpg" alt="Dinner Buffet">
+                        <h4>Dinner Buffet</h4>
+                        <a href="buffet-dinner.html" class="btn btn-view-menu">VIEW DETAILS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
