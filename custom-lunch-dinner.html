@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your Buffet Package | MasterGrill</title>
+    <link rel="icon" href="images/logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --accent: #ff1d1d;
+            --light: #fff5f5;
+            --border: #ffd6d6;
+            --text: #222;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fafafa;
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ===== Header ===== */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            position: relative;
+            text-align: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .brand-text h1 {
+            font-family: 'Cinzel', serif;
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .brand-text-master {
+            color: #222;
+        }
+
+        .brand-text-grill {
+            color: var(--accent);
+        }
+
+        .brand-subtitle {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 3px;
+        }
+
+        /* ===== Back Button (Top Left) ===== */
+        .back-btn {
+            position: absolute;
+            left: 80px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 1rem;
+            color: var(--accent);
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: #d60000;
+        }
+
+        @media (max-width: 768px) {
+            .back-btn {
+                left: 12px;
+                font-size: 1.1rem;
+            }
+
+            .brand-text h1 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* ===== Buffet Builder ===== */
+        .buffet-container {
+            max-width: 1100px;
+            margin: 40px auto 100px;
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .category {
+            border: 1px solid #eee;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #fff;
+            transition: box-shadow 0.2s;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 8px 30px;
+        }
+
+        .category h3 {
+            grid-column: 1 / -1;
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 4px;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: background 0.25s ease;
+        }
+
+        label:hover {
+            background: rgba(255, 29, 29, 0.08);
+        }
+
+        input[type="checkbox"] {
+            accent-color: var(--accent);
+            margin-right: 10px;
+        }
+
+        .summary {
+            background: var(--light);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 35px;
+        }
+
+        .summary h3 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+
+        .summary ul {
+            margin: 10px 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .summary ul li {
+            position: relative;
+            font-size: 1rem;
+            color: #222;
+            line-height: 1.5;
+            margin: 6px 0;
+            padding-left: 22px;
+        }
+
+        .summary ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.2rem;
+            line-height: 1;
+            top: 0;
+        }
+
+        .collapsible {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-weight: 600;
+            cursor: pointer;
+            padding: 8px 0;
+            margin: 10px 0;
+            text-align: left;
+            font-size: 1rem;
+        }
+
+        .collapse-content {
+            display: none;
+        }
+
+        .send-whatsapp-btn {
+            display: block;
+            margin: 15px auto 0;
+            background: linear-gradient(145deg, #25D366, #128C7E);
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+            transition: transform 0.2s ease;
+            text-align: center;
+        }
+
+        .send-whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .sticky-total {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 1rem;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-total {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <button class="back-btn" onclick="goBack()">← Back</button>
+            <div class="brand">
+                <img src="images/logo.png" alt="MasterGrill logo" class="logo">
+                <div class="brand-text">
+                    <h1><span class="brand-text-master">MASTER</span><span class="brand-text-grill">GRILL</span></h1>
+                    <p class="brand-subtitle">Grill · Smoke · Feast</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Buffet Builder -->
+    <section class="buffet-container">
+        <h2>Customize Your Lunch/Dinner Menu</h2>
+
+        <!-- APPETIZER -->
+        <div class="category" data-category="APPETIZER">
+            <h3>🥠 APPETIZER</h3>
+            <label><input type="checkbox" data-price="1" value="Kuih-muih Assorted"><span>Kuih-muih Assorted
+                    (+RM1)</span></label>
+            <label><input type="checkbox" data-price="1" value="Curry Puff"> Curry Puff (+RM1)</span></label>
+            <label><input type="checkbox" data-price="1" value="Spring Rolls"> Spring Rolls (+RM1)</span></label>
+            <label><input type="checkbox" data-price="1" value="Cocktail Sausages"> Cocktail Sausages
+                (+RM1)</span></label>
+            <label><input type="checkbox" data-price="1" value="Chicken Nuggets"><span> Chicken Nuggets
+                    (+RM1)</span></label>
+            <label><input type="checkbox" data-price="1" value="French Fries"><span> French Fries (+RM1)</span></label>
+            <label><input type="checkbox" data-price="1" value="Crab Balls"><span> Crab Balls (+RM1)</span></label>
+            <label><input type="checkbox" data-price="1" value="Meat Balls"><span> Meat Balls (+RM1)</span></label>
+            <label><input type="checkbox" data-price="1" value="Mantau Bun"><span> Mantau Bun (+RM1)</span></label>
+            <label><input type="checkbox" data-price="2" value="Chicken Wings"><span> Chicken Wings
+                    (+RM1)</span></label>
+        </div>
+
+        <!-- RICE -->
+        <div class="category" data-category="RICE">
+            <h3>🍚 RICE</h3>
+            <label><input type="checkbox" data-price="1" value="White Rice"> White Rice (+RM1)</label>
+            <label><input type="checkbox" data-price="2" value="Butter Rice"> Butter Rice (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Nasi Minyak"> Nasi Minyak (+RM2)</label>
+            <label><input type="checkbox" data-price="3" value="Kampung Fried Rice"> Kampung Fried Rice (+RM3)</label>
+            <label><input type="checkbox" data-price="3" value="Chinese Fried Rice"> Chinese Fried Rice (+RM3)</label>
+            <label><input type="checkbox" data-price="3" value="Nasi Tomato"> Nasi Tomato (+RM3)</label>
+            <label><input type="checkbox" data-price="3" value="Nasi Beriyani"> Nasi Beriyani (+RM3)</label>
+        </div>
+
+        <!-- NOODLE -->
+        <div class="category" data-category="NOODLE">
+            <h3>🍜 NOODLE</h3>
+            <label><input type="checkbox" data-price="2" value="Traditional Fried Bee Hoon"> Traditional Fried Bee Hoon
+                (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Singapore Fried Bee Hoon"> Singapore Fried Bee Hoon
+                (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Traditional Fried Yellow Noodle"> Traditional Fried
+                Yellow Noodle (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Fried Mee Mamak"> Fried Mee Mamak (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Stir Fried Kuey Teow"> Stir Fried Kuey Teow
+                (+RM2)</label>
+        </div>
+
+        <!-- CHICKEN -->
+        <div class="category" data-category="CHICKEN">
+            <h3>🍗 CHICKEN</h3>
+            <label><input type="checkbox" data-price="2" value="Ayam Masak Kicap"> Ayam Masak Kicap (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Teriyaki Chicken"> Teriyaki Chicken (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Kari Ayam"> Kari Ayam (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Ayam Masak Merah"> Ayam Masak Merah (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Ayam Black Pepper"> Ayam Black Pepper (+RM2)</label>
+            <label><input type="checkbox" data-price="3" value="Crispy Fried Chicken"> Crispy Fried Chicken
+                (+RM3)</label>
+            <label><input type="checkbox" data-price="3" value="Ayam Goreng Berempah"> Ayam Goreng Berempah
+                (+RM3)</label>
+            <label><input type="checkbox" data-price="3" value="Buttermilk Chicken"> Buttermilk Chicken
+                (+RM3)</label>
+        </div>
+
+        <!-- BEEF -->
+        <div class="category" data-category="BEEF">
+            <h3>🍖 BEEF</h3>
+            <label><input type="checkbox" data-price="3" value="Teriyaki Beef"> Teriyaki Beef (+RM3)</label>
+            <label><input type="checkbox" data-price="3" value="Kari Daging"> Kari Daging (+RM3)</label>
+            <label><input type="checkbox" data-price="3" value="Daging Masak Kurma"> Daging Masak Kurma (+RM3)</label>
+            <label><input type="checkbox" data-price="3" value="Daging Masak Merah"> Daging Masak Merah (+RM3)</label>
+            <label><input type="checkbox" data-price="3" value="Daging Black Pepper"> Daging Black Pepper (+RM3)</label>
+            <label><input type="checkbox" data-price="3" value="Daging Masak Paprik"> Daging Masak Paprik
+                (+RM3)</label>
+            <label><input type="checkbox" data-price="3" value="Daging Masak Hitam"> Daging Masak Hitam
+                (+RM3)</label>
+        </div>
+
+        <!-- VEGETABLE -->
+        <div class="category" data-category="VEGETABLE">
+            <h3>🥬 VEGETABLE</h3>
+            <label><input type="checkbox" data-price="1" value="Taugeh Goreng"> Taugeh Goreng (+RM1)</label>
+            <label><input type="checkbox" data-price="1" value="Kobis Goreng"> Kobis Goreng (+RM1)</label>
+            <label><input type="checkbox" data-price="1" value="Kacang Panjang Goreng Telur"> Kacang Panjang Goreng
+                Telur (+RM1)</label>
+            <label><input type="checkbox" data-price="1" value="Kangkung Goreng Belacan "> Kangkung Goreng Belacan
+                (+RM1)</label>
+            <label><input type="checkbox" data-price="1" value="Kailan Ikan Masin"> Kailan Ikan Masin
+                (+RM1)</label>
+            <label><input type="checkbox" data-price="2" value="Stir-Fried Mixed Vegetables"> Stir-Fried Mixed
+                Vegetables (+RM2)</label>
+
+        </div>
+
+        <!-- WESTERN -->
+        <div class="category" data-category="WESTERN">
+            <h3>🥩 WESTERN</h3>
+            <label><input type="checkbox" data-price="8" value="Breaded Chicken Chop"> Breaded Chicken Chop
+                (+RM8)</label>
+            <label><input type="checkbox" data-price="8" value="Crispy Chicken Chop"> Crispy Chicken Chop (+RM8)</label>
+            <label><input type="checkbox" data-price="9" value="Grilled Chicken Chop"> Grilled Chicken Chop
+                (+RM9)</label>
+            <label><input type="checkbox" data-price="12" value="Grilled Lamb Chop 200g"> Grilled Lamb Chop 200g
+                (+RM12)</label>
+            <label><input type="checkbox" data-price="16" value="Grilled Lamb Chop 300g"> Grilled Lamb Chop 300g
+                (+RM16)</label>
+        </div>
+
+        <!-- PASTA -->
+        <div class="category" data-category="PASTA">
+            <h3>🍝 PASTA</h3>
+            <label><input type="checkbox" data-price="6" value="Spaghetti Bolognese (Beef)"> Spaghetti Bolognese (Beef)
+                (+RM6)</label>
+            <label><input type="checkbox" data-price="6" value="Spaghetti Bolognese (Chicken)"> Spaghetti Bolognese
+                (Chicken) (+RM6)</label>
+            <label><input type="checkbox" data-price="8" value="Spaghetti Carbonara"> Spaghetti Carbonara
+                (+RM8)</label>
+            <label><input type="checkbox" data-price="10" value="Spaghetti Aglio Olio"> Spaghetti Aglio Olio
+                (+RM10)</label>
+            <label><input type="checkbox" data-price="8" value="Macaroni & Cheese with Popcorn Chicken"> Macaroni &
+                Cheese with Popcorn Chicken (+RM8)</label>
+        </div>
+
+        <!-- COLD DRINK -->
+        <div class="category" data-category="COLD DRINK">
+            <h3>🥤 COLD DRINK</h3>
+            <label><input type="checkbox" data-price="1" value="Rose Syrup"> Rose Syrup (+RM1)</label>
+            <label><input type="checkbox" data-price="1" value="Sarsi"> Sarsi (+RM1)</label>
+            <label><input type="checkbox" data-price="1" value="Mixed Berries"> Mixed Berries (+RM1)</label>
+            <label><input type="checkbox" data-price="1" value="Black Currant"> Black Currant (+RM1)</label>
+            <label><input type="checkbox" data-price="2" value="Ice Lemon Tea"> Ice Lemon Tea (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Honey Lemonade"> Honey Lemonade (+RM2)</label>
+            <label><input type="checkbox" data-price="3" value="Fruit Punch Iced Tea"> Fruit Punch Iced Tea (+RM3)</label>
+            <label><input type="checkbox" data-price="3" value="Watermelon Juice"> Watermelon Juice (+RM3)</label>
+        </div>
+
+        <!-- HOT DRINK -->
+        <div class="category" data-category="HOT DRINK">
+            <h3>☕ HOT DRINK</h3>
+            <label><input type="checkbox" data-price="2" value="Teh O Panas"> Teh O Panas (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Teh Tarik"> Teh Tarik (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Kopi O Panas"> Kopi O Panas (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Kopi Panas"> Kopi Panas (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Hot Honey Lemon"> Hot Honey Lemon (+RM2)</label>
+            <label><input type="checkbox" data-price="2" value="Hot Milo"> Hot Milo (+RM2)</label>
+        </div>
+
+        <div class="summary">
+            <h3>🧾 Buffet Summary</h3>
+            <button class="collapsible" id="toggleSummary">Show Selected Items ▼</button>
+            <div class="collapse-content" id="collapseContent">
+                <ul id="selected-items"></ul>
+            </div>
+            <p>Total: <span id="total-price">RM2.00</span> / pax</p>
+            <button class="send-whatsapp-btn" id="send-whatsapp-btn">📱 Send via WhatsApp</button>
+        </div>
+
+        <!-- Reservation Form -->
+        <div id="reservation-form" style="display:none; text-align:center; margin-top:25px;">
+            <h4 style="color:#ff1d1d; margin-bottom:10px;">Reservation Details</h4>
+            <p style="font-size:0.9rem; color:#555;">Please fill in your event details before sending your order.</p>
+
+            <form id="reservationDetails"
+                style="max-width:400px; margin:auto; display:flex; flex-direction:column; gap:10px;">
+                <input type="text" id="custName" placeholder="Name" required
+                    style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+                <input type="tel" id="custPhone" placeholder="Contact Number (e.g. 0175525805)" required
+                    style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+                <input type="date" id="eventDate" required
+                    style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+                <input type="time" id="eventTime" required
+                    style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+                <input type="text" id="eventVenue" placeholder="Event Venue / Location" required
+                    style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+                <input type="number" id="eventPax" placeholder="Number of Pax (min 25 pax)" min="25" required
+                    style="padding:10px; border-radius:8px; border:1px solid #ccc;">
+
+                <button type="button" id="confirm-whatsapp" class="send-whatsapp-btn">✅ Confirm & Send via
+                    WhatsApp</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="sticky-total">Total: <span id="sticky-total">RM2.00</span> / pax</div>
+
+    <script>
+        // Back Button
+        function goBack() {
+            if (document.referrer !== "") {
+                window.history.back();
+            } else {
+                window.location.href = "package-lunch-dinner.html";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const basePrice = 2.0;
+            let total = basePrice;
+            const totalDisplay = document.getElementById("total-price");
+            const stickyTotalDisplay = document.getElementById("sticky-total");
+            const selectedList = document.getElementById("selected-items");
+            const toggleBtn = document.getElementById("toggleSummary");
+            const collapseContent = document.getElementById("collapseContent");
+            const sendBtn = document.getElementById("send-whatsapp-btn");
+            const confirmBtn = document.getElementById("confirm-whatsapp");
+            const formDiv = document.getElementById("reservation-form");
+            const phoneNumber = "60175525805";
+
+            const categoryOrder = [
+                "APPETIZER", "RICE", "NOODLE", "CHICKEN", "VEGETABLE", "COLD DRINK", "HOT DRINK"
+            ];
+
+            const selections = {};
+
+            // ✅ Handle item selections
+            document.querySelectorAll('input[type="checkbox"]').forEach(box => {
+                const category = box.closest(".category").dataset.category;
+                box.addEventListener("change", () => {
+                    const item = box.value;
+                    const price = parseFloat(box.dataset.price);
+
+                    if (!selections[category]) selections[category] = [];
+
+                    if (box.checked) {
+                        selections[category].push({ name: item, price });
+                        total += price;
+                    } else {
+                        const index = selections[category].findIndex(i => i.name === item);
+                        if (index > -1) {
+                            total -= selections[category][index].price;
+                            selections[category].splice(index, 1);
+                        }
+                        if (selections[category].length === 0) delete selections[category];
+                    }
+
+                    updateSelectedList();
+                });
+            });
+
+            function updateSelectedList() {
+                selectedList.innerHTML = "";
+                const allItems = [];
+
+                categoryOrder.forEach(cat => {
+                    if (selections[cat]) selections[cat].forEach(i => allItems.push(i));
+                });
+
+                if (allItems.length === 0) {
+                    selectedList.innerHTML = "<li style='color:#777;'>No items selected yet.</li>";
+                } else {
+                    allItems.forEach(i => {
+                        const li = document.createElement("li");
+                        li.innerHTML = `<strong>${i.name}</strong> ${i.price > 0 ? '(+RM' + i.price + ')' : ''}`;
+                        selectedList.appendChild(li);
+                    });
+                }
+
+                totalDisplay.textContent = `RM${total.toFixed(2)}`;
+                stickyTotalDisplay.textContent = `RM${total.toFixed(2)}`;
+            }
+
+            // Toggle show/hide summary
+            if (toggleBtn) {
+                toggleBtn.addEventListener("click", () => {
+                    const visible = collapseContent.style.display === "block";
+                    collapseContent.style.display = visible ? "none" : "block";
+                    toggleBtn.textContent = visible ? "Show Selected Items ▼" : "Hide Selected Items ▲";
+                });
+            }
+
+            // ✅ Step 1: Show form
+            sendBtn.addEventListener("click", () => {
+                if (Object.keys(selections).length === 0) {
+                    alert("Please select at least one item before continuing.");
+                    return;
+                }
+
+                sendBtn.style.display = "none";
+                formDiv.style.display = "block";
+                formDiv.scrollIntoView({ behavior: "smooth" });
+            });
+
+            // ✅ Step 2: Confirm and send WhatsApp
+            confirmBtn.addEventListener("click", () => {
+                const name = document.getElementById("custName").value.trim();
+                const phone = document.getElementById("custPhone").value.trim();
+                const date = document.getElementById("eventDate").value;
+                const time = document.getElementById("eventTime").value;
+                const venue = document.getElementById("eventVenue").value.trim();
+                const pax = document.getElementById("eventPax").value.trim();
+
+                if (!name || !phone || !date || !time || !venue || !pax) {
+                    alert("Please fill in all reservation details.");
+                    return;
+                }
+
+                const packageType = "Breakfast Buffet";
+                let message = `🍳 *${packageType} Selection*\n\n`;
+                message += `*Reservation Details:*\n`;
+                message += `👤 Name: ${name}\n`;
+                message += `📞 Contact: ${phone}\n`;
+                message += `📅 Date: ${date}\n`;
+                message += `🕒 Time: ${time}\n`;
+                message += `📍 Venue: ${venue}\n`;
+                message += `👥 Pax: ${pax}\n\n`;
+                message += `*Menu Items:*\n`;
+
+                categoryOrder.forEach(cat => {
+                    if (selections[cat]) {
+                        selections[cat].forEach(i => {
+                            message += `- ${i.name} ${i.price > 0 ? '(+RM' + i.price + ')' : ''}\n`;
+                        });
+                    }
+                });
+
+                message += `\n💵 *Total Price:* RM${total.toFixed(2)} per pax\n\n`;
+                message += `Please confirm the order details.\n\n`;
+                message += `───────────────────────\n`;
+                message += `Sent from *MASTER GRILL* • ${packageType} 🍽️\nwww.mastergrillfw.com`;
+
+                const encodedMsg = encodeURIComponent(message);
+                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+                window.open(whatsappURL, "_blank");
+
+                // Reset UI after sending
+                formDiv.style.display = "none";
+                sendBtn.style.display = "block";
+            });
+
+            // Initialize the summary
+            updateSelectedList();
+        });
+    </script>
+</body>
+
+</html>
