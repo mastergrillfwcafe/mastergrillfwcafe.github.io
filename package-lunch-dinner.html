@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Breakfast Buffet | MasterGrill</title>
+    <link rel="icon" href="images/logo.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Cinzel:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --accent: #ff1d1d;
+            --text: #222;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fafafa;
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ====== Header ====== */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            position: relative;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .brand-text {
+            text-align: left;
+        }
+
+        .brand-text h1 {
+            font-family: 'Cinzel', serif;
+            margin: 0;
+            font-size: 1.4rem;
+        }
+
+        .brand-text-master {
+            color: #222;
+        }
+
+        .brand-text-grill {
+            color: var(--accent);
+        }
+
+        .brand-subtitle {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 3px;
+        }
+
+        /* ====== Back Button ====== */
+        .back-btn {
+            position: absolute;
+            left: 80px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 1rem;
+            color: var(--accent);
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: #d60000;
+        }
+
+        @media (max-width: 768px) {
+            .back-btn {
+                left: 12px;
+                font-size: 1.1rem;
+            }
+
+            .brand-text h1 {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* ====== Breakfast Section ====== */
+        .section-head {
+            text-align: center;
+            margin-top: 40px;
+            max-width: 600px;
+            /* Add this */
+            margin-left: auto;
+            /* Add this */
+            margin-right: auto;
+            /* Add this */
+            padding: 0 20px;
+            /* Add this for mobile spacing */
+        }
+
+        .section-head h3 {
+            color: var(--accent);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .accent-line {
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+            margin: 10px auto 20px;
+            border-radius: 4px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .menu-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+            border: 3px solid transparent;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-card.selected {
+            border: 3px solid var(--accent);
+            box-shadow: 0 8px 18px rgba(255, 29, 29, 0.25);
+            transform: scale(1.02);
+        }
+
+        .menu-card h4 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .menu-card ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding-left: 0;
+            color: #333;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .menu-card li {
+            margin-left: 0;
+            /* Remove any left margin from list items */
+        }
+
+        /* ====== Buttons ====== */
+        .button-group {
+            text-align: center;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .send-whatsapp-btn,
+        .customize-btn {
+            width: 100%;
+            max-width: 320px;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 8px;
+            padding: 12px 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            text-decoration: none;
+            border: none;
+        }
+
+        .send-whatsapp-btn {
+            background: linear-gradient(145deg, #25D366, #128C7E);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+        }
+
+        .send-whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.6);
+        }
+
+        .customize-btn {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(192, 52, 52, 0.4);
+        }
+
+        .customize-btn:hover {
+            background: #d60000;
+        }
+
+        .note {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        /* ===== Reservation Form ===== */
+        #reservation-form {
+            display: none;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        #reservation-form input {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+
+        #reservation-form form {
+            max-width: 400px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            /* Add this */
+        }
+
+        #confirm-whatsapp {
+            width: 100%;
+            /* Make button full width of form */
+            max-width: 320px;
+            /* Optional: limit max width */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <button class="back-btn" onclick="goBack()">← Back</button>
+            <div class="brand">
+                <img src="images/logo.png" alt="MasterGrill logo" class="logo">
+                <div class="brand-text">
+                    <h1><span class="brand-text-master">MASTER</span><span class="brand-text-grill">GRILL</span></h1>
+                    <p class="brand-subtitle">Grill · Smoke · Feast</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breakfast Section -->
+    <section>
+        <div class="section-head">
+            <h3>🍳 Lunch/Dinner Buffet Packages</h3>
+            <div class="accent-line"></div>
+            <p>Choose one of our curated breakfast sets, then send your selection via WhatsApp.</p>
+        </div>
+
+        <div class="menu-grid" id="menuGrid">
+            <div class="menu-card" data-menu="A" data-price="8.00">
+                <h4>Lunch/Dinner Set A – RM8.00</h4>
+                <ul>
+                    <li>Vegetable Spring Roll</li>
+                    <li>White Rice</li>
+                    <li>Chicken Teriyaki</li>
+                    <li>Rose Syrup</li>
+                </ul>
+            </div>
+
+            <div class="menu-card" data-menu="B" data-price="10.00">
+                <h4>Lunch/Dinner Set B – RM10.00</h4>
+                <ul>
+                    <li>Curry Puff</li>
+                    <li>Nasi Minyak</li>
+                    <li>Ayam Masak Merah</li>
+                    <li>Kobis Goreng</li>
+                    <li>Black Currant Cordial</li>
+                </ul>
+            </div>
+
+            <div class="menu-card" data-menu="C" data-price="12.00">
+                <h4>Lunch/Dinner Set C – RM12.00</h4>
+                <ul>
+                    <li>Vegetable Spring Roll & Samosa</li>
+                    <li>White Rice</li>
+                    <li>Ayam Goreng Berempah</li>
+                    <li>Kacang Panjang Goreng Telur</li>
+                    <li>Seasonal Fruit Platter</li>
+                    <li>Mixed Berries Cordial</li>
+                </ul>
+            </div>
+
+            <div class="menu-card" data-menu="D" data-price="15.00">
+                <h4>Lunch/Dinner Set D – RM15.00</h4>
+                <ul>
+                    <li>Chicken Nuggets</li>
+                    <li>Chinese Fried Rice</li>
+                    <li>Crispy Fried Chicken</li>
+                    <li>Seasonal Fruit Platter</li>
+                    <li>Ice Lemon Tea</li>
+                </ul>
+            </div>
+
+            <div class="menu-card" data-menu="E" data-price="17.00">
+                <h4>Lunch/Dinner Set E – RM17.00</h4>
+                <ul>
+                    <li>Cocktails Sausages & French Fries</li>
+                    <li>Butter Rice</li>
+                    <li>Grilled Chicken Chop</li>
+                    <li>Seasonal Fruit Platter</li>
+                    <li>Tropical Fruit Cocktail</li>
+                    <li>Mixed Berries</li>
+                    <li>Hot Tea without milk</li>
+
+                </ul>
+            </div>
+
+            <div class="menu-card" data-menu="F" data-price="20.00">
+                <h4>Lunch/Dinner Set F – RM20.00</h4>
+                <ul>
+                    <li>Cocktails Sausages & Chicken Nuggets</li>
+                    <li>Crispy Chicken Chop</li>
+                    <li>Beef Bolognese</li>
+                    <li>Tropical Fruit Cocktail</li>
+                    <li>Ice Lemon Tea</li>
+                    <li>Hot Coffee / Tea</li>
+                </ul>
+            </div>
+
+            <div class="menu-card" data-menu="G" data-price="25.00">
+                <h4>Lunch/Dinner Set G – RM25.00</h4>
+                <ul>
+                    <li>Chicken Wings</li>
+                    <li>White Rice</li>
+                    <li>Grilled Chicken Chop with Black Pepper Sauce</li>
+                    <li>Buttermilk Chicken</li>
+                    <li>Sayur Campur Goreng</li>
+                    <li>Mango Sago with Nata De Coco</li>
+                    <li>Mixed Berries</li>
+                    <li>Hot Coffee / Tea</li>
+                </ul>
+            </div>
+
+            <div class="menu-card" data-menu="H" data-price="30.00">
+                <h4>Lunch/Dinner Set H – RM30.00</h4>
+                <ul>
+                    <li>Chicken Nuggets & French Fries</li>
+                    <li>Butter Rice</li>
+                    <li>Grilled Chicken Chop with Black Pepper Sauce</li>
+                    <li>Spaghetti Carbonara</li>
+                    <li>Grilled Lamb Chop 200g</li>
+                    <li>Tropical Fruit Cocktail</li>
+                    <li>Fruit Punch Iced Tea</li>
+                    <li>Hot Coffee / Tea</li>
+                </ul>
+            </div>
+
+            <div class="menu-card" data-menu="I" data-price="35.00">
+                <h4>Lunch/Dinner Set I – RM35.00</h4>
+                <ul>
+                    <li>Grilled Cocktails Sausages & Chicken Wings</li>
+                    <li>Grilled Lamb Chop 300g with Black Pepper Sauce</li>
+                    <li>Spaghetti Aglio Olio with Grilled Prawns</li>
+                    <li>Nasi Beriyani Daging with Acar</li>
+                    <li>Seasonal Fruit Platter & Bubur Pulut Hitam</li>
+                    <li>Fresh Watermelon Juice</li>
+                    <li>Hot Milo / Coffee / Tea</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="send-whatsapp-btn" id="send-whatsapp-btn">📱 Send via WhatsApp</button>
+            <a href="custom-lunch-dinner.html" class="customize-btn">🍽️ Customize My Own Menu</a>
+            <p class="note">(Please select one menu above before sending.)</p>
+        </div>
+
+        <!-- Reservation Form -->
+        <div id="reservation-form">
+            <h4 style="color:#ff1d1d; margin-bottom:10px;">Reservation Details</h4>
+            <form id="reservationDetails">
+                <input type="text" id="custName" placeholder="Full Name" required>
+                <input type="tel" id="custPhone" placeholder="Contact Number (e.g. 0123456789)" required>
+                <input type="date" id="eventDate" required>
+                <input type="time" id="eventTime" required>
+                <input type="text" id="eventVenue" placeholder="Event Venue / Location" required>
+                <input type="number" id="numPax" placeholder="Number of Pax (min 25 pax)" min="25" required>
+                <button type="button" id="confirm-whatsapp" class="send-whatsapp-btn">✅ Confirm & Send WhatsApp</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Back Button
+        function goBack() {
+            if (document.referrer !== "") {
+                window.history.back();
+            } else {
+                window.location.href = "buffet-package.html";
+            }
+        }
+
+        // Menu card selection
+        const menuCards = document.querySelectorAll(".menu-card");
+        let selectedMenu = null;
+
+        menuCards.forEach(card => {
+            card.addEventListener("click", () => {
+                menuCards.forEach(c => c.classList.remove("selected"));
+                card.classList.add("selected");
+                selectedMenu = card;
+            });
+        });
+
+        const sendBtn = document.getElementById("send-whatsapp-btn");
+        const confirmBtn = document.getElementById("confirm-whatsapp");
+        const formDiv = document.getElementById("reservation-form");
+
+        sendBtn.addEventListener("click", () => {
+            if (!selectedMenu) {
+                alert("Please select a menu before continuing.");
+                return;
+            }
+            sendBtn.style.display = "none";
+            formDiv.style.display = "block";
+            formDiv.scrollIntoView({ behavior: "smooth" });
+        });
+
+        confirmBtn.addEventListener("click", () => {
+            const name = document.getElementById("custName").value.trim();
+            const phone = document.getElementById("custPhone").value.trim();
+            const date = document.getElementById("eventDate").value;
+            const time = document.getElementById("eventTime").value;
+            const venue = document.getElementById("eventVenue").value.trim();
+            const numPax = document.getElementById("numPax").value.trim();
+
+            if (!name || !phone || !date || !time || !venue || !numPax) {
+                alert("Please fill in all reservation details.");
+                return;
+            }
+
+            const menuName = selectedMenu.querySelector("h4").innerText;
+            const items = Array.from(selectedMenu.querySelectorAll("li"))
+                .map(li => `- ${li.textContent}`)
+                .join("\n");
+            const price = selectedMenu.dataset.price;
+            const packageType = "Breakfast Buffet";
+            const phoneNumber = "60175525805";
+
+            let message = `🍳 *${packageType} Selection*\n\n`;
+            message += `*Reservation Details:*\n`;
+            message += `👤 Name: ${name}\n📞 Contact: ${phone}\n📅 Date: ${date}\n🕒 Time: ${time}\n📍 Venue: ${venue}\n👥 Pax: ${numPax}\n\n`;
+            message += `*Menu Selected:*\n${menuName}\n\n`;
+            message += `*Menu Items:*\n${items}\n\n`;
+            message += `💵 *Total Price:* RM${price} per pax\n\n`;
+            message += `Please confirm the order details.\n\n`;
+            message += `───────────────────────\nSent from *MASTER GRILL* 🍽️\nwww.mastergrillfw.com`;
+
+            const encodedMsg = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
+            window.open(whatsappURL, "_blank");
+
+            formDiv.style.display = "none";
+            sendBtn.style.display = "block";
+        });
+    </script>
+</body>
+
+</html>
