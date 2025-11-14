@@ -508,15 +508,15 @@
                     return;
                 }
 
-                const packageType = "Breakfast Buffet";
+                const packageType = "Buffet";
                 let message = `🍳 *${packageType} Selection*\n\n`;
                 message += `*Reservation Details:*\n`;
-                message += `👤 Name: ${name}\n`;
-                message += `📞 Contact: ${phone}\n`;
-                message += `📅 Date: ${date}\n`;
-                message += `🕒 Time: ${time}\n`;
-                message += `📍 Venue: ${venue}\n`;
-                message += `👥 Pax: ${pax}\n\n`;
+                message += `Name: ${name}\n`;
+                message += `Contact: ${phone}\n`;
+                message += `Date: ${date}\n`;
+                message += `Time: ${time}\n`;
+                message += `Venue: ${venue}\n`;
+                message += `Pax: ${pax}\n\n`;
                 message += `*Menu Items:*\n`;
 
                 categoryOrder.forEach(cat => {
@@ -527,10 +527,10 @@
                     }
                 });
 
-                message += `\n💵 *Total Price:* RM${total.toFixed(2)} per pax\n\n`;
-                message += `Please confirm the order details.\n\n`;
+                message += `\n💵 *Price:* RM${total.toFixed(2)} per pax\n\n`;
+                message += `Please confirm the order details.\n`;
                 message += `───────────────────────\n`;
-                message += `Sent from *MASTER GRILL* • ${packageType} 🍽️\nwww.mastergrillfw.com`;
+                message += `Sent from www.mastergrillfw.com`;
 
                 const encodedMsg = encodeURIComponent(message);
                 const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMsg}`;
